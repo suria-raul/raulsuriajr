@@ -63,8 +63,8 @@ h1, h2, h3 {
   background: #FF9000;
 }
 
-#fh5co-header,
-.fh5co-cover {
+#myprofile-header,
+.myprofile-cover {
   background-color: transparent;
   background-size: cover;
   background-attachment: fixed;
@@ -72,8 +72,8 @@ h1, h2, h3 {
   height: 600px;
   width: 100%;
 }
-#fh5co-header .overlay,
-.fh5co-cover .overlay {
+#myprofile-header .overlay,
+.myprofile-cover .overlay {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -81,27 +81,27 @@ h1, h2, h3 {
   right: 0;
   background: rgba(43, 46, 74, 0.9);
 }
-#fh5co-header .display-t,
-.fh5co-cover .display-t {
+#myprofile-header .display-t,
+.myprofile-cover .display-t {
   width: 100%;
   display: table;
 }
-#fh5co-header .display-tc,
-.fh5co-cover .display-tc {
+#myprofile-header .display-tc,
+.myprofile-cover .display-tc {
   display: table-cell;
   vertical-align: middle;
   height: 600px;
 }
-#fh5co-header .display-tc h1, #fh5co-header .display-tc h2, #fh5co-header .display-tc h3,
-.fh5co-cover .display-tc h1,
-.fh5co-cover .display-tc h2,
-.fh5co-cover .display-tc h3 {
+#myprofile-header .display-tc h1, #myprofile-header .display-tc h2, #myprofile-header .display-tc h3,
+.myprofile-cover .display-tc h1,
+.myprofile-cover .display-tc h2,
+.myprofile-cover .display-tc h3 {
   margin: 0;
   padding: 0;
   color: white;
 }
-#fh5co-header .display-tc h1,
-.fh5co-cover .display-tc h1 {
+#myprofile-header .display-tc h1,
+.myprofile-cover .display-tc h1 {
   font-family: "Kaushan Script", cursive;
   margin-bottom: 30px;
   font-size: 50px;
@@ -113,13 +113,13 @@ h1, h2, h3 {
   -o-transform: rotate(-5deg);
   transform: rotate(-5deg);
 }
-#fh5co-header .display-tc h1 span,
-.fh5co-cover .display-tc h1 span {
+#myprofile-header .display-tc h1 span,
+.myprofile-cover .display-tc h1 span {
   padding: 4px 15px;
   position: relative;
 }
-#fh5co-header .display-tc h1 span:before,
-.fh5co-cover .display-tc h1 span:before {
+#myprofile-header .display-tc h1 span:before,
+.myprofile-cover .display-tc h1 span:before {
   position: absolute;
   top: 40px;
   left: 0;
@@ -129,8 +129,8 @@ h1, h2, h3 {
   background: #fff;
   margin-left: -30px;
 }
-#fh5co-header .display-tc h1 span:after,
-.fh5co-cover .display-tc h1 span:after {
+#myprofile-header .display-tc h1 span:after,
+.myprofile-cover .display-tc h1 span:after {
   position: absolute;
   top: 40px;
   right: 0;
@@ -141,43 +141,43 @@ h1, h2, h3 {
   margin-right: -30px;
 }
 @media screen and (max-width: 768px) {
-  #fh5co-header .display-tc h1,
-  .fh5co-cover .display-tc h1 {
+  #myprofile-header .display-tc h1,
+  .myprofile-cover .display-tc h1 {
     font-size: 34px;
   }
-  #fh5co-header .display-tc h1 span:before,
-  .fh5co-cover .display-tc h1 span:before {
+  #myprofile-header .display-tc h1 span:before,
+  .myprofile-cover .display-tc h1 span:before {
     top: 28px;
     width: 20px;
     height: 3px;
     margin-left: -15px;
   }
-  #fh5co-header .display-tc h1 span:after,
-  .fh5co-cover .display-tc h1 span:after {
+  #myprofile-header .display-tc h1 span:after,
+  .myprofile-cover .display-tc h1 span:after {
     top: 28px;
     width: 20px;
     height: 3px;
     margin-right: -15px;
   }
 }
-#fh5co-header .display-tc h2,
-.fh5co-cover .display-tc h2 {
+#myprofile-header .display-tc h2,
+.myprofile-cover .display-tc h2 {
   font-size: 20px;
   line-height: 1.5;
   margin-bottom: 30px;
 }
-#fh5co-header .display-tc h3,
-.fh5co-cover .display-tc h3 {
+#myprofile-header .display-tc h3,
+.myprofile-cover .display-tc h3 {
   font-size: 16px;
 }
 @media screen and (max-width: 768px) {
-  #fh5co-header .display-tc h3,
-  .fh5co-cover .display-tc h3 {
+  #myprofile-header .display-tc h3,
+  .myprofile-cover .display-tc h3 {
     font-size: 14px;
   }
 }
-#fh5co-header .display-tc .profile-thumb,
-.fh5co-cover .display-tc .profile-thumb {
+#myprofile-header .display-tc .profile-thumb,
+.myprofile-cover .display-tc .profile-thumb {
   background-size: cover !important;
   background-position: center center;
   background-repeat: no-repeat;
@@ -191,42 +191,42 @@ h1, h2, h3 {
   -ms-border-radius: 50%;
   border-radius: 50%;
 }
-#fh5co-header .display-tc .fh5co-social-icons li a,
-.fh5co-cover .display-tc .fh5co-social-icons li a {
+#myprofile-header .display-tc .myprofile-social-icons li a,
+.myprofile-cover .display-tc .myprofile-social-icons li a {
   color: #fff;
 }
-#fh5co-header .display-tc .fh5co-social-icons li a i,
-.fh5co-cover .display-tc .fh5co-social-icons li a i {
+#myprofile-header .display-tc .myprofile-social-icons li a i,
+.myprofile-cover .display-tc .myprofile-social-icons li a i {
   font-size: 30px;
 }
 
-#fh5co-about,
-#fh5co-resume,
-#fh5co-skills,
-#fh5co-started,
-#fh5co-work {
+#myprofile-about,
+#myprofile-resume,
+#myprofile-skills,
+#myprofile-started,
+#myprofile-work {
   padding: 7em 0;
   clear: both;
 }
 @media screen and (max-width: 768px) {
-  #fh5co-about,
-  #fh5co-resume,
-  #fh5co-skills,
-  #fh5co-started,
-  #fh5co-work {
+  #myprofile-about,
+  #myprofile-resume,
+  #myprofile-skills,
+  #myprofile-started,
+  #myprofile-work {
     padding: 3em 0;
   }
 }
 
-#fh5co-started {
+#myprofile-started {
   border-bottom: none;
 }
 
-.fh5co-bg-dark {
+.myprofile-bg-dark {
   background: rgba(43, 46, 74, 0.9);
   background: rgba(43, 46, 74, 0.9);
 }
-.fh5co-bg-dark .fh5co-heading h2 {
+.myprofile-bg-dark .myprofile-heading h2 {
   color: #fff !important;
 }
 
@@ -263,11 +263,11 @@ h1, h2, h3 {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.fh5co-social-icons {
+.myprofile-social-icons {
   margin: 0;
   padding: 0;
 }
-.fh5co-social-icons li {
+.myprofile-social-icons li {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -276,7 +276,7 @@ h1, h2, h3 {
   zoom: 1;
   *display: inline;
 }
-.fh5co-social-icons li a {
+.myprofile-social-icons li a {
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
@@ -285,15 +285,15 @@ h1, h2, h3 {
   padding-left: 10px;
   padding-right: 10px;
 }
-.fh5co-social-icons li a i {
+.myprofile-social-icons li a i {
   font-size: 20px;
 }
 
-#fh5co-about .fh5co-social-icons {
+#myprofile-about .myprofile-social-icons {
   margin: 0;
   padding: 0;
 }
-#fh5co-about .fh5co-social-icons li {
+#myprofile-about .myprofile-social-icons li {
   padding: 0;
   list-style: none;
   display: -moz-inline-stack;
@@ -301,7 +301,7 @@ h1, h2, h3 {
   zoom: 1;
   *display: inline;
 }
-#fh5co-about .fh5co-social-icons li a {
+#myprofile-about .myprofile-social-icons li a {
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
@@ -314,28 +314,28 @@ h1, h2, h3 {
   -ms-border-radius: 2px;
   border-radius: 2px;
 }
-#fh5co-about .fh5co-social-icons li a i {
+#myprofile-about .myprofile-social-icons li a i {
   font-size: 20px;
 }
-#fh5co-about .fh5co-social-icons li a:hover {
+#myprofile-about .myprofile-social-icons li a:hover {
   background: #FF9000;
 }
 
-.fh5co-heading {
+.myprofile-heading {
   margin-bottom: 5em;
 }
-.fh5co-heading h2 {
+.myprofile-heading h2 {
   font-size: 40px;
   margin-bottom: 20px;
   line-height: 1.5;
   color: #000;
 }
-.fh5co-heading p {
+.myprofile-heading p {
   font-size: 18px;
   line-height: 1.5;
   color: #828282;
 }
-.fh5co-heading span {
+.myprofile-heading span {
   display: block;
   margin-bottom: 10px;
   text-transform: uppercase;
@@ -645,7 +645,7 @@ h1, h2, h3 {
   transform: translate3d(0, 0, 0);
 }
 
-#fh5co-started {
+#myprofile-started {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -653,14 +653,14 @@ h1, h2, h3 {
   float: left;
   width: 100%;
 }
-#fh5co-started .fh5co-heading {
+#myprofile-started .myprofile-heading {
   margin-bottom: 0;
 }
-#fh5co-started .fh5co-heading h2 {
+#myprofile-started .myprofile-heading h2 {
   color: #fff;
   margin-bottom: 20px !important;
 }
-#fh5co-started .fh5co-heading p {
+#myprofile-started .myprofile-heading p {
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -710,7 +710,7 @@ input[type="text"] {
   margin: 0px !important;
 }
 
-.fh5co-loader {
+.myprofile-loader {
   position: fixed;
   left: 0px;
   top: 0px;
