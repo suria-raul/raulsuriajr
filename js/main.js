@@ -116,8 +116,8 @@
 	};
 
 	var skillsWayPoint = function() {
-		if ($('#myprofile-skills').length > 0 ) {
-			$('#myprofile-skills').waypoint( function( direction ) {
+		if ($('#skills').length > 0 ) {
+			$('#skills').waypoint( function( direction ) {
 										
 				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
 					setTimeout( pieChart , 400);					
@@ -131,7 +131,7 @@
 
 	// Loading page
 	var loaderPage = function() {
-		$(".myprofile-loader").fadeOut("slow");
+		$(".loader").fadeOut("slow");
 	};
 
 	

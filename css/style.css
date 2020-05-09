@@ -63,8 +63,8 @@ h1, h2, h3 {
   background: #FF9000;
 }
 
-#myprofile-header,
-.myprofile-cover {
+#header,
+.cover {
   background-color: transparent;
   background-size: cover;
   background-attachment: fixed;
@@ -72,8 +72,8 @@ h1, h2, h3 {
   height: 600px;
   width: 100%;
 }
-#myprofile-header .overlay,
-.myprofile-cover .overlay {
+#header .overlay,
+.cover .overlay {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -81,27 +81,27 @@ h1, h2, h3 {
   right: 0;
   background: #d4af37bd;
 }
-#myprofile-header .display-t,
-.myprofile-cover .display-t {
+#header .display-t,
+.cover .display-t {
   width: 100%;
   display: table;
 }
-#myprofile-header .display-tc,
-.myprofile-cover .display-tc {
+#header .display-tc,
+.cover .display-tc {
   display: table-cell;
   vertical-align: middle;
   height: 600px;
 }
-#myprofile-header .display-tc h1, #myprofile-header .display-tc h2, #myprofile-header .display-tc h3,
-.myprofile-cover .display-tc h1,
-.myprofile-cover .display-tc h2,
-.myprofile-cover .display-tc h3 {
+#header .display-tc h1, #header .display-tc h2, #header .display-tc h3,
+.cover .display-tc h1,
+.cover .display-tc h2,
+.cover .display-tc h3 {
   margin: 0;
   padding: 0;
   color: white;
 }
-#myprofile-header .display-tc h1,
-.myprofile-cover .display-tc h1 {
+#header .display-tc h1,
+.cover .display-tc h1 {
   font-family: "Kaushan Script", cursive;
   margin-bottom: 30px;
   font-size: 50px;
@@ -113,13 +113,13 @@ h1, h2, h3 {
   -o-transform: rotate(-5deg);
   transform: rotate(-5deg);
 }
-#myprofile-header .display-tc h1 span,
-.myprofile-cover .display-tc h1 span {
+#header .display-tc h1 span,
+.cover .display-tc h1 span {
   padding: 4px 15px;
   position: relative;
 }
-#myprofile-header .display-tc h1 span:before,
-.myprofile-cover .display-tc h1 span:before {
+#header .display-tc h1 span:before,
+.cover .display-tc h1 span:before {
   position: absolute;
   top: 40px;
   left: 0;
@@ -129,8 +129,8 @@ h1, h2, h3 {
   background: #fff;
   margin-left: -30px;
 }
-#myprofile-header .display-tc h1 span:after,
-.myprofile-cover .display-tc h1 span:after {
+#header .display-tc h1 span:after,
+.cover .display-tc h1 span:after {
   position: absolute;
   top: 40px;
   right: 0;
@@ -141,43 +141,43 @@ h1, h2, h3 {
   margin-right: -30px;
 }
 @media screen and (max-width: 768px) {
-  #myprofile-header .display-tc h1,
-  .myprofile-cover .display-tc h1 {
+  #header .display-tc h1,
+  .cover .display-tc h1 {
     font-size: 34px;
   }
-  #myprofile-header .display-tc h1 span:before,
-  .myprofile-cover .display-tc h1 span:before {
+  #header .display-tc h1 span:before,
+  .cover .display-tc h1 span:before {
     top: 28px;
     width: 20px;
     height: 3px;
     margin-left: -15px;
   }
-  #myprofile-header .display-tc h1 span:after,
-  .myprofile-cover .display-tc h1 span:after {
+  #header .display-tc h1 span:after,
+  .cover .display-tc h1 span:after {
     top: 28px;
     width: 20px;
     height: 3px;
     margin-right: -15px;
   }
 }
-#myprofile-header .display-tc h2,
-.myprofile-cover .display-tc h2 {
+#header .display-tc h2,
+.cover .display-tc h2 {
   font-size: 20px;
   line-height: 1.5;
   margin-bottom: 30px;
 }
-#myprofile-header .display-tc h3,
-.myprofile-cover .display-tc h3 {
+#header .display-tc h3,
+.cover .display-tc h3 {
   font-size: 16px;
 }
 @media screen and (max-width: 768px) {
-  #myprofile-header .display-tc h3,
-  .myprofile-cover .display-tc h3 {
+  #header .display-tc h3,
+  .cover .display-tc h3 {
     font-size: 14px;
   }
 }
-#myprofile-header .display-tc .profile-thumb,
-.myprofile-cover .display-tc .profile-thumb {
+#header .display-tc .profile-thumb,
+.cover .display-tc .profile-thumb {
   background-size: cover !important;
   background-position: center center;
   background-repeat: no-repeat;
@@ -191,42 +191,42 @@ h1, h2, h3 {
   -ms-border-radius: 50%;
   border-radius: 50%;
 }
-#myprofile-header .display-tc .myprofile-social-icons li a,
-.myprofile-cover .display-tc .myprofile-social-icons li a {
+#header .display-tc .social-icons li a,
+.cover .display-tc .social-icons li a {
   color: #fff;
 }
-#myprofile-header .display-tc .myprofile-social-icons li a i,
-.myprofile-cover .display-tc .myprofile-social-icons li a i {
+#header .display-tc .social-icons li a i,
+.cover .display-tc .social-icons li a i {
   font-size: 30px;
 }
 
-#myprofile-about,
-#myprofile-resume,
-#myprofile-skills,
-#myprofile-started,
-#myprofile-work {
+#about,
+#resume,
+#skills,
+#started,
+#work {
   padding: 7em 0;
   clear: both;
 }
 @media screen and (max-width: 768px) {
-  #myprofile-about,
-  #myprofile-resume,
-  #myprofile-skills,
-  #myprofile-started,
-  #myprofile-work {
+  #about,
+  #resume,
+  #skills,
+  #started,
+  #work {
     padding: 3em 0;
   }
 }
 
-#myprofile-started {
+#started {
   border-bottom: none;
 }
 
-.myprofile-bg-dark {
+.bg-dark {
   /*background: rgba(43, 46, 74, 0.9);*/
   background: #D4AF37;
 }
-.myprofile-bg-dark .myprofile-heading h2 {
+.bg-dark .heading h2 {
   color: #fff !important;
 }
 
@@ -263,11 +263,11 @@ h1, h2, h3 {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.myprofile-social-icons {
+.social-icons {
   margin: 0;
   padding: 0;
 }
-.myprofile-social-icons li {
+.social-icons li {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -276,7 +276,7 @@ h1, h2, h3 {
   zoom: 1;
   *display: inline;
 }
-.myprofile-social-icons li a {
+.social-icons li a {
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
@@ -285,15 +285,15 @@ h1, h2, h3 {
   padding-left: 10px;
   padding-right: 10px;
 }
-.myprofile-social-icons li a i {
+.social-icons li a i {
   font-size: 20px;
 }
 
-#myprofile-about .myprofile-social-icons {
+#about .social-icons {
   margin: 0;
   padding: 0;
 }
-#myprofile-about .myprofile-social-icons li {
+#about .social-icons li {
   padding: 0;
   list-style: none;
   display: -moz-inline-stack;
@@ -301,7 +301,7 @@ h1, h2, h3 {
   zoom: 1;
   *display: inline;
 }
-#myprofile-about .myprofile-social-icons li a {
+#about .social-icons li a {
   display: -moz-inline-stack;
   display: inline-block;
   zoom: 1;
@@ -314,28 +314,28 @@ h1, h2, h3 {
   -ms-border-radius: 2px;
   border-radius: 2px;
 }
-#myprofile-about .myprofile-social-icons li a i {
+#about .social-icons li a i {
   font-size: 20px;
 }
-#myprofile-about .myprofile-social-icons li a:hover {
+#about .social-icons li a:hover {
   background: #FF9000;
 }
 
-.myprofile-heading {
+.heading {
   margin-bottom: 5em;
 }
-.myprofile-heading h2 {
+.heading h2 {
   font-size: 40px;
   margin-bottom: 20px;
   line-height: 1.5;
   color: #000;
 }
-.myprofile-heading p {
+.heading p {
   font-size: 18px;
   line-height: 1.5;
   color: #828282;
 }
-.myprofile-heading span {
+.heading span {
   display: block;
   margin-bottom: 10px;
   text-transform: uppercase;
@@ -645,7 +645,7 @@ h1, h2, h3 {
   transform: translate3d(0, 0, 0);
 }
 
-#myprofile-started {
+#started {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -653,14 +653,14 @@ h1, h2, h3 {
   float: left;
   width: 100%;
 }
-#myprofile-started .myprofile-heading {
+#started .heading {
   margin-bottom: 0;
 }
-#myprofile-started .myprofile-heading h2 {
+#started .heading h2 {
   color: #fff;
   margin-bottom: 20px !important;
 }
-#myprofile-started .myprofile-heading p {
+#started .heading p {
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -710,7 +710,7 @@ input[type="text"] {
   margin: 0px !important;
 }
 
-.myprofile-loader {
+.loader {
   position: fixed;
   left: 0px;
   top: 0px;
