@@ -723,3 +723,12 @@ input[type="text"] {
 .js .animate-box {
   opacity: 0;
 }
+
+.text-black {
+  color: #000;
+}
+
+.work-experience {
+  padding: 1rem 0rem;
+  margin-bottom: 1rem;
+}
