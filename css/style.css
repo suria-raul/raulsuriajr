@@ -206,8 +206,8 @@ h1, h2, h3 {
 #started,
 #work {
   padding: 7em 0;
-  clear: both;
 }
+
 @media screen and (max-width: 768px) {
   #about,
   #resume,
@@ -223,11 +223,11 @@ h1, h2, h3 {
 }
 
 .bg-dark {
-  /*background: rgba(43, 46, 74, 0.9);*/
-  background: #D4AF37;
+  background: #d4af37;
 }
+
 .bg-dark .heading h2 {
-  color: #fff !important;
+  color: #fff;
 }
 
 .info {
@@ -321,20 +321,19 @@ h1, h2, h3 {
   background: #FF9000;
 }
 
-.heading {
-  margin-bottom: 5em;
-}
 .heading h2 {
   font-size: 40px;
   margin-bottom: 20px;
   line-height: 1.5;
   color: #000;
 }
+
 .heading p {
   font-size: 18px;
   line-height: 1.5;
   color: #828282;
 }
+
 .heading span {
   display: block;
   margin-bottom: 10px;
@@ -729,6 +728,6 @@ input[type="text"] {
 }
 
 .work-experience {
-  padding: 1rem 0rem;
+  padding: 1rem 0;
   margin-bottom: 1rem;
 }
