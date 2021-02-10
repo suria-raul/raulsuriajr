@@ -11,7 +11,7 @@
 	<link rel="shortcut icon" type="image/jpg" href="images/profile.jpg">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/icomoon.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/modernizr-2.6.2.min.js"></script>
 	<script src="js/respond.min.js"></script>
@@ -31,9 +31,7 @@
 							<div class="profile-thumb" style="background: url(images/profile.jpg);"></div>
 							<h1><span>Raul Suria Jr</span></h1>
 							<h3><span>Web Developer</span></h3>
-							<a href="pdf/Raul_Suria_jr_.pdf"
-							style="color: white; border-bottom: 1px solid white;"
-							target="_blank">Download Resume</a>
+							<a href="pdf/Raul_Suria_jr.pdf" download id="resume-download">Download Resume</a>
 							<p>
 								<ul class="social-icons">
 									<li>
@@ -57,63 +55,136 @@
 	<div id="about" class="animate-box">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-8 col-md-offset-2 text-center heading">
-					<h2>Profile</h2>
+				<div class="col-md-12 text-center heading">
+					<h2>Summary</h2>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<ul class="info">
-						<li>
-              <span class="first-block">Full Name:</span>
-              <span class="second-block">Raul Suria Jr</span>
-            </li>
-						<li>
-              <span class="first-block">Phone:</span>
-              <span class="second-block">+639 945133 5134</span>
-            </li>
-						<li>
-              <span class="first-block">Email:</span>
-              <span class="second-block">raulsuria.ils@gmail.com</span>
-            </li>
-          </ul>
-				</div>
-				<div class="col-md-8">
+				<div class="col-md-12 text-center">
 					<p>
 						An experienced Web Developer with practical knowledge of object-oriented programming, problem solving,
 						implementation and maintenance. I perform effectively both individually and in teams.
 					</p>
-					<ul class="social-icons">
-						<li>
-							<a href="https://www.facebook.com/raul.suria.37"
-								 target="_blank"><i class="icon-facebook3"></i></a>
-						</li>
-						<li>
-							<a href="https://www.instagram.com/raul_suria/?hl=en"
-								 target="_blank"><i class="icon-instagram"></i></a>
-						</li>
-					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div id="resume" class="bg-color">
+	<div id="work" class="animate-box" style="background-image:url(images/cover_4.jpg);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center heading">
+					<h2>Projects</h2>
+				</div>
+			</div>
+			<div class="row animate-box projects">
+				<div class="col-md-3 text-center col-padding animate-box">
+					<a href="https://drybrush.com/"
+						 class="work" style="background-image: url(images/dryBrush.png);"
+						 target="_blank">
+						<div class="desc">
+							<h3>E-commerce</h3>
+							<span>drybrush</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-3 text-center col-padding animate-box">
+					<a href="https://www.batangmaylaban.com.ph/"
+						 class="work" style="background-image: url(images/bonakid.png);"
+						 target="_blank">
+						<div class="desc">
+							<h3>Drupal Website</h3>
+							<span>Bonakid</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-3 text-center col-padding animate-box">
+					<a href="https://www.mindanaodailynews.com/"
+						 class="work" style="background-image: url(images/mindanaoDaily.png);"
+						 target="_blank">
+						<div class="desc">
+							<h3>News Website</h3>
+							<span>Mindanao Daily News</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-3 text-center col-padding animate-box">
+					<a href="https://momandbabyhub.com/"
+						 class="work" style="background-image: url(images/momandbaby.png);"
+						 target="_blank">
+						<div class="desc">
+							<h3>E-commerce</h3>
+							<span>Mom And Baby Hub</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-3 text-center col-padding animate-box">
+					<a href="https://teaandcoffeedepot.com/"
+						 class="work" style="background-image: url(images/teaCoffee.png);"
+						 target="_blank">
+						<div class="desc">
+							<h3>E-commerce</h3>
+							<span>Tea and Coffee depot</span>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="row animate-box">
+				<div class="col-md-8 col-md-offset-2 text-center heading">
+					<h3>Projects I build just because I want</h3>
+				</div>
+				<div class="col-md-3 text-center col-padding animate-box">
+					<a href="https://suria-raul.github.io/my_travel_review/"
+						 class="work" style="background-image: url(images/my_travel_review.png);"
+						 target="_blank">
+						<div class="desc">
+							<h3>Blog</h3>
+							<span>My Travel Review</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-3 text-center col-padding animate-box">
+					<a href="https://suria-raul.github.io/rtech/"
+						 class="work" style="background-image: url(images/rtech.png);"
+						 target="_blank">
+						<div class="desc">
+							<h3>E-commerce</h3>
+							<span>rtech</span>
+						</div>
+					</a>
+				</div>
+				<div class="col-md-3 text-center col-padding animate-box">
+					<a href="https://suria-raul.github.io/loginForm/index.html"
+						 class="work" style="background-image: url(images/justALoginForm.png);"
+						 target="_blank">
+						<div class="desc">
+							<h3>Login Form</h3>
+							<span>non-functional login form</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="resume" class="animate-box">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 col-md-offset-0">
-					<h3 class="text-center">Work Experience</h3>
+				<div class="col-md-12 col-md-offset-0 heading">
+					<h2 class="text-center">Work Experience</h2>
 					<div class="work-experience">
 						<h4 class="text-black">PHP Developer</h4>
 						<span class="text-black">Coreproc Inc. - SEPT 2019 - present</span>
 						<div>
 							<ul>
 								<li>
-									Creating Mobile Responsive Applications with browser compatibility
-									from start to finish using Drupal or Laravel
+									Creating Applications from start to finish using Drupal or Laravel
 								</li>
 								<li>API Integration</li>
 								<li>Application Maintenance</li>
+								<li>Mobile Responsive</li>
+								<li>Bug Fixing</li>
+								<li>Browser Compatibility</li>
+								<li>Application Development</li>
 							</ul>
 						</div>
 					</div>
@@ -143,102 +214,69 @@
 			</div>
 			<div class="row row-pb-md">
 				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="85">
-						<span><strong>Drupal</strong>65%</span>
+					<div class="chart" data-percent="95">
+						<span><strong>HTML5</strong>95%</span>
 					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
 					<div class="chart" data-percent="85">
-            <span><strong>Laravel</strong>85%</span>
-          </div>
+						<span><strong>CSS</strong>85%</span>
+					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="80">
-            <span><strong>PHP</strong>80%</span>
-          </div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="80">
-            <span><strong>MySQL</strong>70%</span>
-          </div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="80">
-            <span><strong>JavaScript</strong>80%</span>
-          </div>
+					<div class="chart" data-percent="65">
+						<span><strong>SCSS</strong>65%</span>
+					</div>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
 					<div class="chart" data-percent="90">
-            <span><strong>Bootstrap</strong>90%</span>
+						<span><strong>Bootstrap</strong>90%</span>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
+					<div class="chart" data-percent="45">
+						<span><strong>Tailwind</strong>45%</span>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
+					<div class="chart" data-percent="60">
+						<span><strong>JavaScript</strong>60%</span>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
+					<div class="chart" data-percent="60">
+						<span><strong>jQuery</strong>60%</span>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
+					<div class="chart" data-percent="45">
+						<span><strong>VueJs</strong>45%</span>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
+					<div class="chart" data-percent="35">
+						<span><strong>PHP</strong>35%</span>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
+					<div class="chart" data-percent="25">
+						<span><strong>Drupal</strong>25%</span>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
+					<div class="chart" data-percent="55">
+            <span><strong>Laravel</strong>55%</span>
           </div>
 				</div>
 				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="95">
-            <span><strong>HTML5</strong>95%</span>
-          </div>
-				</div>
-				<div class="col-md-3 col-sm-6 col-xs-12 text-center">
-					<div class="chart" data-percent="93">
-            <span><strong>CSS3</strong>93%</span>
+					<div class="chart" data-percent="55">
+            <span><strong>MySQL</strong>55%</span>
           </div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div id="work" class="bg-dark">
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-8 col-md-offset-2 text-center heading">
-					<h2>Projects</h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="https://www.batangmaylaban.com.ph/"
-						 class="work" style="background-image: url(images/bonakid.png);"
-						 target="_blank">
-						<div class="desc">
-							<h3>Drupal Website</h3>
-							<span>Bonakid</span>
-						</div>
-					</a>
-				</div>
-
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="https://www.mindanaodailynews.com/" 
-						class="work" style="background-image: url(images/mindanaoDaily.png);"
-						target="_blank">
-						<div class="desc">
-							<h3>News Website</h3>
-							<span>Mindanao Daily News</span>
-						</div>
-					</a>
-				</div>
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="https://momandbabyhub.com/" 
-					class="work" style="background-image: url(images/momandbaby.png);"
-					target="_blank">
-						<div class="desc">
-							<h3>E-commerce</h3>
-							<span>Mom And Baby Hub</span>
-						</div>
-					</a>
-				</div>
-				
-				<div class="col-md-3 text-center col-padding animate-box">
-					<a href="https://teaandcoffeedepot.com/" 
-					class="work" style="background-image: url(images/teaCoffee.png);"
-					target="_blank">
-						<div class="desc">
-							<h3>E-commerce</h3>
-							<span>Tea and Coffee depot</span>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>
 	
 <script src="js/jquery.min.js"></script>

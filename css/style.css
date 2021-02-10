@@ -73,7 +73,8 @@ h1, h2, h3 {
   width: 100%;
 }
 #header .overlay,
-.cover .overlay {
+.cover .overlay,
+#work .overlay {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -192,9 +193,12 @@ h1, h2, h3 {
   border-radius: 50%;
 }
 #header .display-tc .social-icons li a,
-.cover .display-tc .social-icons li a {
+.cover .display-tc .social-icons li a,
+#work .heading h2,
+#work .heading h3 {
   color: #fff;
 }
+
 #header .display-tc .social-icons li a i,
 .cover .display-tc .social-icons li a i {
   font-size: 30px;
@@ -206,8 +210,8 @@ h1, h2, h3 {
 #started,
 #work {
   padding: 7em 0;
-  clear: both;
 }
+
 @media screen and (max-width: 768px) {
   #about,
   #resume,
@@ -223,11 +227,11 @@ h1, h2, h3 {
 }
 
 .bg-dark {
-  /*background: rgba(43, 46, 74, 0.9);*/
-  background: #D4AF37;
+  background: #d4af37;
 }
+
 .bg-dark .heading h2 {
-  color: #fff !important;
+  color: #fff;
 }
 
 .info {
@@ -321,20 +325,19 @@ h1, h2, h3 {
   background: #FF9000;
 }
 
-.heading {
-  margin-bottom: 5em;
-}
 .heading h2 {
   font-size: 40px;
   margin-bottom: 20px;
   line-height: 1.5;
   color: #000;
 }
+
 .heading p {
   font-size: 18px;
   line-height: 1.5;
   color: #828282;
 }
+
 .heading span {
   display: block;
   margin-bottom: 10px;
@@ -729,6 +732,22 @@ input[type="text"] {
 }
 
 .work-experience {
-  padding: 1rem 0rem;
+  padding: 1rem 0;
   margin-bottom: 1rem;
+}
+
+#work {
+  min-height: 100vh;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+#resume-download {
+  color: #fff;
+  border-bottom: 1px solid white;
+}
+
+#work .projects {
+  margin-bottom: 16rem;
 }
