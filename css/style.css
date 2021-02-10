@@ -741,3 +741,8 @@ input[type="text"] {
   background-size: cover;
   background-position: center;
 }
+
+#resume-download {
+  color: #fff;
+  border-bottom: 1px solid white;
+}
