@@ -749,6 +749,11 @@ input[type="text"] {
   border-bottom: 1px solid white;
 }
 
+#resume-download:hover {
+  color: #000;
+  border-color: #000;
+}
+
 #work .projects {
   margin-bottom: 16rem;
 }
