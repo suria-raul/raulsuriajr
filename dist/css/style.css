@@ -1,0 +1,45 @@
+#introduction {
+  height: 100svh;
+  background-color: #d4af37;
+}
+
+#introduction .container {
+  height: 100svh;
+}
+
+#introduction .container .name {
+  font-family: "Kaushan Script", cursive;
+  transform: rotate(-5deg);
+}
+
+#introduction .container .name:before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background: #000;
+  margin-left: -40px;
+}
+
+#introduction .container .name:after {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  background: #000;
+  margin-right: -40px;
+}
+
+#introduction .container .name:after,
+#introduction .container .name:before {
+  width: 30px;
+  height: 4px;
+  content: '';
+  font-family: "Kaushan Script", cursive;
+}
+
+#introduction .container .title {
+  font-family: "Space Mono", Arial, serif;
+}
+
+#introduction .container .resume {
+  border-bottom: 1px solid black;
+}
