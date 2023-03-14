@@ -2,13 +2,11 @@
   background-color: #d4af37;
 }
 
-#introduction,
-#work-experience {
+#introduction{
   height: 100svh;
 }
 
-#introduction .custom-container,
-#work-experience .custom-container {
+#introduction .custom-container{
   height: 100svh;
 }
 
@@ -38,10 +36,6 @@
   height: 4px;
   content: '';
   font-family: "Kaushan Script", cursive;
-}
-
-#introduction .custom-container .title {
-  font-family: "Space Mono", Arial, serif;
 }
 
 #introduction .custom-container .resume {

@@ -3,5 +3,7 @@
 @tailwind utilities;
 
 .custom-container {
-    @apply sm:container md:container lg:container xl:container 2xl:container mx-auto;
+    @apply px-6 mx-auto;
+
+    max-width: 1170px;
 }
