@@ -52,10 +52,30 @@ const work_experiences = [
             'Providing Web support',
             'Analyzing and reviewing design specifications',
         ]
+    },
+    wfm = {
+        name: 'WNS Global Services',
+        position: 'Executive Workforce',
+        duration: 'April 2017 - September 2017',
+        responsibilities: [
+            'Planning contact center agent\'s schedule',
+            'Monitoring and reporting agent\'s real time performance',
+        ]
+    },
+    united = {
+        name: 'WNS Global Services',
+        position: 'Customer service representative',
+        duration: 'October 2015 - April 2017',
+        responsibilities: [
+            'Provides resolution on all client inquiries',
+            'Booking tickets',
+            'Bag \'s Checkin',
+            'etc.,'
+        ]
     }
 ]
 
-window.onload = () => {
+function experiences() {
     for (const company in work_experiences) {
         let container = document.querySelector('#work-experience .custom-container')
         let div = document.createElement('div')
@@ -83,4 +103,8 @@ window.onload = () => {
         div.appendChild(list)
         container.appendChild(div)
     }
+}
+
+window.onload = () => {
+    experiences()
 }
