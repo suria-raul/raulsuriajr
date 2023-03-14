@@ -1,28 +1,21 @@
-#introduction,
-#projects {
-  background-color: #d4af37;
-}
-
 #introduction {
   min-height: 100svh;
 }
 
 #work-experience,
-#projects {
+#projects,
+#skills {
   min-height: calc(100svh - 12rem);
 }
 
 #work-experience .custom-container,
-#projects .custom-container {
+#projects .custom-container,
+#skills .custom-container {
   min-height: calc(100svh - 12rem);
 }
 
 #introduction .custom-container {
   min-height: 100svh;
-}
-
-#introduction .custom-container .name {
-  transform: rotate(-5deg);
 }
 
 #introduction .custom-container .name:before {
@@ -51,6 +44,10 @@
 
 #introduction .custom-container .resume {
   border-bottom: 1px solid black;
+}
+
+.custom-container {
+  max-width: 1170px;
 }
 
 .image-container img {

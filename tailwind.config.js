@@ -5,7 +5,14 @@ module.exports = {
       "dist/js/main.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      rotate: {
+        '5': '5deg',
+      },
+      colors: {
+        'golden-yellow': '#d4af37',
+      }
+    },
     fontFamily: {
       'space-mono': '"Space Mono", Arial, serif',
       'kaushan': '"Kaushan Script", cursive',

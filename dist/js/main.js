@@ -70,7 +70,7 @@ const work_experiences = [
             'Provides resolution on all client inquiries',
             'Booking tickets',
             'Bag \'s Checkin',
-            'etc.,'
+            'etc.,',
         ]
     }
 ]
@@ -134,19 +134,19 @@ const projects = [
         name: 'Bonakid',
         technology: 'Drupal 8',
         image: 'images/bonakid.png',
-        link: 'https://batangmaylaban.com.ph'
+        link: 'https://batangmaylaban.com.ph',
     },
     dryBrush = {
         name: 'drybrush',
         technology: 'Laravel',
         image: 'images/dryBrush.png',
-        link: 'https://drybrush.com/'
+        link: 'https://drybrush.com/',
     },
     mom_baby_hub = {
         name: 'Mom and Baby Hub',
         technology: 'Laravel',
         image: 'images/momandbaby.png',
-        link: 'https://momandbabyhub.com/'
+        link: 'https://momandbabyhub.com/',
     }
 ]
 
@@ -162,6 +162,7 @@ function projectList() {
         anchor.setAttribute('href', projects[project].link)
         anchor.setAttribute('target', '_blank')
         image.setAttribute('src', projects[project].image)
+        image.setAttribute('alt', projects[project].name)
         span.textContent = projects[project].name
         spanTech.textContent = projects[project].technology
 
@@ -179,7 +180,86 @@ function projectList() {
     }
 }
 
+const skills = [
+    drupal = {
+        name: 'Drupal',
+        icon: 'images/icons/drupal.png',
+    },
+    laravel = {
+        name: 'Laravel',
+        icon: 'images/icons/laravel.png',
+    },
+    php = {
+        name: 'PHP',
+        icon: 'images/icons/php.png',
+    },
+    mysql = {
+        name: 'MySQL',
+        icon: 'images/icons/mysql.png',
+    },
+    git = {
+        name: 'Git',
+        icon: 'images/icons/git.png',
+    },
+    javascript = {
+        name: 'JavaScript',
+        icon: 'images/icons/javaScript.png',
+    },
+    vue = {
+        name: 'Vue',
+        icon: 'images/icons/vue.png',
+    },
+    jquery = {
+        name: 'JQuery',
+        icon: 'images/icons/jquery.png',
+    },
+    tailwindcss = {
+        name: 'Tailwind Css',
+        icon: 'images/icons/tailwindcss.png',
+    },
+    bootstrap = {
+        name: 'Bootstrap',
+        icon: 'images/icons/bootstrap.png',
+    },
+    sass = {
+        name: 'Sass',
+        icon: 'images/icons/sass.png'
+    },
+    css3 = {
+        name: 'CSS',
+        icon: 'images/icons/css3.png',
+    },
+    html = {
+        name: 'HTML',
+        icon: 'images/icons/html5.png',
+    }
+]
+
+function skillList() {
+    for (const skill in skills) {
+        let container = document.querySelector('#skills .skills-container')
+        let icon = document.createElement('img')
+        let iconContainer = document.createElement('div')
+        let span = document.createElement('span')
+
+        icon.setAttribute('src', skills[skill].icon)
+        icon.setAttribute('alt', skills[skill].name)
+
+        span.textContent = skills[skill].name
+
+        icon.classList.add('w-24', 'block', 'mx-auto', 'mb-2')
+        span.classList.add('capitalize')
+        iconContainer.classList.add('block', 'mx-auto', 'text-center')
+
+        iconContainer.appendChild(icon)
+        iconContainer.appendChild(span)
+
+        container.appendChild(iconContainer)
+    }
+}
+
 window.onload = () => {
     experiences()
     projectList()
+    skillList()
 }
