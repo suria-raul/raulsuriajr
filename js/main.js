@@ -1,149 +1,265 @@
-(function () {
-	
-	'use strict';
+const work_experiences = [
+    yondu = {
+        name: 'Yondu',
+        position: 'Software Engineer - Drupal',
+        duration: 'September 2022 - Present',
+        responsibilities: [
+            'Bug fixing and Troubleshooting',
+            'Applying enhancements to an existing application',
+            'Following best practice and standards',
+            'Code implementation enhancements',
+            'Git and Composer',
+        ]
+    },
+    halcyon = {
+        name: 'Halcyon Digital Media Design',
+        position: 'Drupal Developer',
+        duration: 'March 2021 - September 2022',
+        responsibilities: [
+            'Creating Drupal application from scratch',
+            'Mobile responsive',
+            'Custom modules, theming and Drupal MVC',
+            'Deploying applications in cpanel',
+            'Linux Shell Scripting',
+            'Git, Drush and Composer',
+            'DDEV for local development',
+        ]
+    },
+    coreproc = {
+        name: 'Coreproc',
+        position: 'PHP Developer',
+        duration: 'September 2019 - March 2021',
+        responsibilities: [
+            'Creating Drupal or Laravel applications from start to finish',
+            'Drupal and laravel web applications maintenance',
+            'Troubleshooting, Bug fixing and enhancements to drupal application',
+            'Integrating new technologies suggested by marketing',
+            'Linux Shell Scripting',
+            'Mobile responsive',
+            'Unit testing for API\'s created using laravel',
+            'MVC for both drupal and laravel',
+        ]
+    },
+    purplebug = {
+        name: 'PurpleBug Inc',
+        position: 'Junior Web Developer',
+        duration: 'August 2018 - February 2019',
+        responsibilities: [
+            'Bug fixing and Troubleshooting',
+            'Laravel and wordpress application maintenance',
+            'Applying enchancements to an existing application',
+            'Creating Mobile Responsive Applications',
+            'Providing Web support',
+            'Analyzing and reviewing design specifications',
+        ]
+    },
+    wfm = {
+        name: 'WNS Global Services',
+        position: 'Executive Workforce',
+        duration: 'April 2017 - September 2017',
+        responsibilities: [
+            'Planning contact center agent\'s schedule',
+            'Monitoring and reporting agent\'s real time performance',
+        ]
+    },
+    united = {
+        name: 'WNS Global Services',
+        position: 'Customer service representative',
+        duration: 'October 2015 - April 2017',
+        responsibilities: [
+            'Provides resolution on all client inquiries',
+            'Booking tickets',
+            'Bag\'s Check-in',
+            'etc.,',
+        ]
+    }
+]
 
-	var isMobile = {
-		Android: function() {
-			return navigator.userAgent.match(/Android/i);
-		},
-			BlackBerry: function() {
-			return navigator.userAgent.match(/BlackBerry/i);
-		},
-			iOS: function() {
-			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-		},
-			Opera: function() {
-			return navigator.userAgent.match(/Opera Mini/i);
-		},
-			Windows: function() {
-			return navigator.userAgent.match(/IEMobile/i);
-		},
-			any: function() {
-			return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-		}
-	};
+function experiences() {
+    for (const company in work_experiences) {
+        let container = document.querySelector('#work-experience .custom-container')
+        let div = document.createElement('div')
+        let h4 = document.createElement('H4')
+        let span = document.createElement('span')
+        let list = document.createElement('ul')
 
-	
-	var fullHeight = function() {
+        div.classList.add('py-4', 'mb-4')
+        h4.classList.add('text-xl', 'my-1')
+        span.classList.add('text-xs', 'mb-1.5', 'block', 'uppercase')
+        list.classList.add('list-disc', 'pl-10')
 
-		if ( !isMobile.any() ) {
-			$('.js-fullheight').css('height', $(window).height());
-			$(window).resize(function(){
-				$('.js-fullheight').css('height', $(window).height());
-			});
-		}
-	};
+        h4.textContent = work_experiences[company].position
+        span.textContent = work_experiences[company].name + ', ' + work_experiences[company].duration
 
-	// Parallax
-	var parallax = function() {
-		$(window).stellar();
-	};
+        work_experiences[company].responsibilities.forEach((responsibility) => {
+            let item = document.createElement('li')
+            item.textContent = responsibility
 
-	var contentWayPoint = function() {
-		var i = 0;
-		$('.animate-box').waypoint( function( direction ) {
+            list.appendChild(item)
+        })
 
-			if( direction === 'down' && !$(this.element).hasClass('animated-fast') ) {
-				
-				i++;
+        div.appendChild(h4)
+        div.appendChild(span)
+        div.appendChild(list)
+        container.appendChild(div)
+    }
+}
 
-				$(this.element).addClass('item-animate');
-				setTimeout(function(){
+const projects = [
+    charlton_media = {
+        name: 'Charlton Media',
+        technology: 'Drupal 9',
+        image: 'images/charlton_media.png',
+        link: 'https://charltonmedia.com/',
+    },
+    elbien_hotel = {
+        name: 'El bien hotel tagaytay',
+        technology: 'Drupal 9',
+        image: 'images/elbien_hotel_tagaytay.png',
+        link: 'https://elbienhotel.com/',
+    },
+    alstra = {
+        name: 'Alstra Contact Page',
+        technology: 'Drupal 8',
+        image: 'images/alstra_form.png',
+        link: 'https://ccs.alstra.ph/',
+    },
+    wellness_home_massage = {
+        name: 'Royal Wellness',
+        technology: 'Drupal 9',
+        image: 'images/royal_wellness.png',
+        link: 'https://wellnesshomemassage.com/',
+    },
+    bonakid = {
+        name: 'Bonakid',
+        technology: 'Drupal 8',
+        image: 'images/bonakid.png',
+        link: 'https://batangmaylaban.com.ph',
+    },
+    dryBrush = {
+        name: 'drybrush',
+        technology: 'Laravel',
+        image: 'images/dryBrush.png',
+        link: 'https://drybrush.com/',
+    },
+    mom_baby_hub = {
+        name: 'Mom and Baby Hub',
+        technology: 'Laravel',
+        image: 'images/momandbaby.png',
+        link: 'https://momandbabyhub.com/',
+    }
+]
 
-					$('body .animate-box.item-animate').each(function(k){
-						var el = $(this);
-						setTimeout( function () {
-							var effect = el.data('animate-effect');
-							if ( effect === 'fadeIn') {
-								el.addClass('fadeIn animated-fast');
-							} else if ( effect === 'fadeInLeft') {
-								el.addClass('fadeInLeft animated-fast');
-							} else if ( effect === 'fadeInRight') {
-								el.addClass('fadeInRight animated-fast');
-							} else {
-								el.addClass('fadeInUp animated-fast');
-							}
+function projectList() {
+    for (const project in projects) {
+        let projectContainer = document.querySelector('#projects .projects-container')
+        let anchor = document.createElement('a')
+        let imageContainer = document.createElement('div')
+        let image = document.createElement('img')
+        let span = document.createElement('span')
+        let spanTech = document.createElement('span')
 
-							el.removeClass('item-animate');
-						},  k * 100, 'easeInOutExpo' );
-					});
-					
-				}, 50);
-				
-			}
+        anchor.setAttribute('href', projects[project].link)
+        anchor.setAttribute('target', '_blank')
+        image.setAttribute('src', projects[project].image)
+        image.setAttribute('alt', projects[project].name)
+        span.textContent = projects[project].name
+        spanTech.textContent = projects[project].technology
 
-		} , { offset: '85%' } );
-	};
+        imageContainer.classList.add('image-container', 'mb-3')
+        image.classList.add('h-full', 'mx-auto')
+        span.classList.add('block', 'text-center')
+        spanTech.classList.add('block', 'text-center')
 
+        imageContainer.appendChild(image)
+        anchor.appendChild(imageContainer)
+        anchor.appendChild(span)
+        anchor.appendChild(spanTech)
 
+        projectContainer.appendChild(anchor)
+    }
+}
 
-	var goToTop = function() {
+const skills = [
+    drupal = {
+        name: 'Drupal',
+        icon: 'images/icons/drupal.png',
+    },
+    laravel = {
+        name: 'Laravel',
+        icon: 'images/icons/laravel.png',
+    },
+    php = {
+        name: 'PHP',
+        icon: 'images/icons/php.png',
+    },
+    mysql = {
+        name: 'MySQL',
+        icon: 'images/icons/mysql.png',
+    },
+    git = {
+        name: 'Git',
+        icon: 'images/icons/git.png',
+    },
+    javascript = {
+        name: 'JavaScript',
+        icon: 'images/icons/javaScript.png',
+    },
+    vue = {
+        name: 'Vue',
+        icon: 'images/icons/vue.png',
+    },
+    jquery = {
+        name: 'JQuery',
+        icon: 'images/icons/jquery.png',
+    },
+    tailwindcss = {
+        name: 'Tailwind Css',
+        icon: 'images/icons/tailwindcss.png',
+    },
+    bootstrap = {
+        name: 'Bootstrap',
+        icon: 'images/icons/bootstrap.png',
+    },
+    sass = {
+        name: 'Sass',
+        icon: 'images/icons/sass.png'
+    },
+    css3 = {
+        name: 'CSS',
+        icon: 'images/icons/css3.png',
+    },
+    html = {
+        name: 'HTML',
+        icon: 'images/icons/html5.png',
+    }
+]
 
-		$('.js-gotop').on('click', function(event){
-			
-			event.preventDefault();
+function skillList() {
+    for (const skill in skills) {
+        let container = document.querySelector('#skills .skills-container')
+        let icon = document.createElement('img')
+        let iconContainer = document.createElement('div')
+        let span = document.createElement('span')
 
-			$('html, body').animate({
-				scrollTop: $('html').offset().top
-			}, 500, 'easeInOutExpo');
-			
-			return false;
-		});
+        icon.setAttribute('src', skills[skill].icon)
+        icon.setAttribute('alt', skills[skill].name)
 
-		$(window).scroll(function(){
+        span.textContent = skills[skill].name
 
-			var $win = $(window);
-			if ($win.scrollTop() > 200) {
-				$('.js-top').addClass('active');
-			} else {
-				$('.js-top').removeClass('active');
-			}
+        icon.classList.add('w-24', 'block', 'mx-auto', 'mb-2')
+        span.classList.add('capitalize')
+        iconContainer.classList.add('block', 'mx-auto', 'text-center')
 
-		});
-	
-	};
+        iconContainer.appendChild(icon)
+        iconContainer.appendChild(span)
 
-	var pieChart = function() {
-		$('.chart').easyPieChart({
-			scaleColor: false,
-			lineWidth: 4,
-			lineCap: 'butt',
-			barColor: '#FF9000',
-			trackColor:	"#f5f5f5",
-			size: 160,
-			animate: 1000
-		});
-	};
+        container.appendChild(iconContainer)
+    }
+}
 
-	var skillsWayPoint = function() {
-		if ($('#skills').length > 0 ) {
-			$('#skills').waypoint( function( direction ) {
-										
-				if( direction === 'down' && !$(this.element).hasClass('animated') ) {
-					setTimeout( pieChart , 400);					
-					$(this.element).addClass('animated');
-				}
-			} , { offset: '90%' } );
-		}
-
-	};
-
-
-	// Loading page
-	var loaderPage = function() {
-		$(".loader").fadeOut("slow");
-	};
-
-	
-	$(function(){
-		contentWayPoint();
-		goToTop();
-		loaderPage();
-		fullHeight();
-		parallax();
-		// pieChart();
-		skillsWayPoint();
-	});
-
-
-}());
+window.onload = () => {
+    experiences()
+    projectList()
+    skillList()
+}
