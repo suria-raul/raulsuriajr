@@ -105,6 +105,81 @@ function experiences() {
     }
 }
 
+const projects = [
+    charlton_media = {
+        name: 'Charlton Media',
+        technology: 'Drupal 9',
+        image: 'images/charlton_media.png',
+        link: 'https://charltonmedia.com/',
+    },
+    elbien_hotel = {
+        name: 'El bien hotel tagaytay',
+        technology: 'Drupal 9',
+        image: 'images/elbien_hotel_tagaytay.png',
+        link: 'https://elbienhotel.com/',
+    },
+    alstra = {
+        name: 'Alstra Contact Page',
+        technology: 'Drupal 8',
+        image: 'images/alstra_form.png',
+        link: 'https://ccs.alstra.ph/',
+    },
+    wellness_home_massage = {
+        name: 'Royal Wellness',
+        technology: 'Drupal 9',
+        image: 'images/royal_wellness.png',
+        link: 'https://wellnesshomemassage.com/',
+    },
+    bonakid = {
+        name: 'Bonakid',
+        technology: 'Drupal 8',
+        image: 'images/bonakid.png',
+        link: 'https://batangmaylaban.com.ph'
+    },
+    dryBrush = {
+        name: 'drybrush',
+        technology: 'Laravel',
+        image: 'images/dryBrush.png',
+        link: 'https://drybrush.com/'
+    },
+    mom_baby_hub = {
+        name: 'Mom and Baby Hub',
+        technology: 'Laravel',
+        image: 'images/momandbaby.png',
+        link: 'https://momandbabyhub.com/'
+    }
+]
+
+function projectList() {
+    for (const project in projects) {
+        let projectContainer = document.querySelector('#projects .drupal-projects-container')
+        let anchor = document.createElement('a')
+        let imageContainer = document.createElement('div')
+        let image = document.createElement('img')
+        let span = document.createElement('span')
+        let spanTech = document.createElement('span')
+
+        anchor.setAttribute('href', projects[project].link)
+        anchor.setAttribute('target', '_blank')
+        image.setAttribute('src', projects[project].image)
+        span.textContent = projects[project].name
+        spanTech.textContent = projects[project].technology
+
+        imageContainer.classList.add('image-container', 'mb-3')
+        image.classList.add('h-full', 'mx-auto')
+        span.classList.add('block', 'text-center')
+        spanTech.classList.add('block', 'text-center')
+
+        imageContainer.appendChild(image)
+        anchor.appendChild(imageContainer)
+        anchor.appendChild(span)
+        anchor.appendChild(spanTech)
+
+        projectContainer.appendChild(anchor)
+    }
+}
+
 window.onload = () => {
     experiences()
+    projectList()
 }
