@@ -69,7 +69,7 @@ const work_experiences = [
         responsibilities: [
             'Provides resolution on all client inquiries',
             'Booking tickets',
-            'Bag \'s Checkin',
+            'Bag\'s Check-in',
             'etc.,',
         ]
     }
@@ -152,7 +152,7 @@ const projects = [
 
 function projectList() {
     for (const project in projects) {
-        let projectContainer = document.querySelector('#projects .drupal-projects-container')
+        let projectContainer = document.querySelector('#projects .projects-container')
         let anchor = document.createElement('a')
         let imageContainer = document.createElement('div')
         let image = document.createElement('img')
