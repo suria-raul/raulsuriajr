@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.custom-container {
+    @apply sm:container md:container lg:container xl:container 2xl:container mx-auto;
+}

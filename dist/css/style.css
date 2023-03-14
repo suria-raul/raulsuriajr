@@ -1,18 +1,22 @@
 #introduction {
-  height: 100svh;
   background-color: #d4af37;
 }
 
-#introduction .container {
+#introduction,
+#work-experience {
   height: 100svh;
 }
 
-#introduction .container .name {
-  font-family: "Kaushan Script", cursive;
+#introduction .custom-container,
+#work-experience .custom-container {
+  height: 100svh;
+}
+
+#introduction .custom-container .name {
   transform: rotate(-5deg);
 }
 
-#introduction .container .name:before {
+#introduction .custom-container .name:before {
   position: absolute;
   top: 50%;
   left: 0;
@@ -20,7 +24,7 @@
   margin-left: -40px;
 }
 
-#introduction .container .name:after {
+#introduction .custom-container .name:after {
   position: absolute;
   top: 50%;
   right: 0;
@@ -28,18 +32,18 @@
   margin-right: -40px;
 }
 
-#introduction .container .name:after,
-#introduction .container .name:before {
+#introduction .custom-container .name:after,
+#introduction .custom-container .name:before {
   width: 30px;
   height: 4px;
   content: '';
   font-family: "Kaushan Script", cursive;
 }
 
-#introduction .container .title {
+#introduction .custom-container .title {
   font-family: "Space Mono", Arial, serif;
 }
 
-#introduction .container .resume {
+#introduction .custom-container .resume {
   border-bottom: 1px solid black;
 }

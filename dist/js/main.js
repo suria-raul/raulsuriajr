@@ -1,1 +1,66 @@
-!function(e){var t={};function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:r})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var r=Object.create(null);if(n.r(r),Object.defineProperty(r,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var o in e)n.d(r,o,function(t){return e[t]}.bind(null,o));return r},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=0)}([function(e,t){console.log("working")}]);
+const work_experiences = [
+    company = {
+        name: 'Yondu',
+        position: 'Software Engineer - Drupal',
+        duration: 'September 2022 - Present',
+        responsibilities: [
+            'Bug fixing and Troubleshooting',
+            'Applying enhancements to an existing application',
+            'Following best practice and standards',
+            'Code implementation enhancements',
+            'Git and Composer',
+        ]
+    },
+    company = {
+        name: 'Halcyon Digital Media Design',
+        position: 'Drupal Developer',
+        duration: 'March 2021 - September 2022',
+        responsibilities: [
+            'Creating Drupal application from scratch',
+            'Custom modules, theming and Drupal MVC',
+            'Deploying applications in cpanel',
+            'Linux Shell Scripting',
+            'Git, Drush and Composer',
+            'DDEV for local development',
+        ]
+    },
+    company = {
+        name: 'Coreproc',
+        position: 'PHP Developer',
+        duration: 'September 2019 - March 2021',
+        responsibilities: [
+            'Creating laravel applications from scratch',
+            'Drupal and laravel web applications maintenance',
+            'Troubleshooting, Bug fixing and enhancements to drupal application',
+            'Integrating new technologies suggested by marketing',
+            'Linux Shell Scripting',
+            'Unit testing for API\'s created using laravel',
+            'MVC for both drupal and laravel',
+        ]
+    }
+]
+
+window.onload = () => {
+    for (const key in work_experiences) {
+        let container = document.querySelector('#work-experience .custom-container')
+        let div = document.createElement('div')
+        let h4 = document.createElement('H4')
+        let span = document.createElement('span')
+        let list = document.createElement('ul')
+
+        h4.textContent = work_experiences[key].name
+        span.textContent = work_experiences[key].duration
+
+        work_experiences[key].responsibilities.forEach((responsibility) => {
+            let item = document.createElement('li')
+            item.textContent = responsibility
+
+            list.appendChild(item)
+        })
+
+        div.appendChild(h4)
+        div.appendChild(span)
+        div.appendChild(list)
+        container.appendChild(div)
+    }
+}

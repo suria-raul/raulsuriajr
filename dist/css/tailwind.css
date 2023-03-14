@@ -513,40 +513,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
 .relative {
   position: relative;
 }
@@ -558,6 +524,10 @@ video {
 
 .my-4 {
   margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.mb-4 {
   margin-bottom: 1rem;
 }
 
@@ -593,6 +563,28 @@ video {
   border-radius: 9999px;
 }
 
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.font-kaushan {
+  font-family: "Kaushan Script", cursive;
+}
+
+.font-space-mono {
+  font-family: "Space Mono", Arial, serif;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .text-5xl {
   font-size: 3rem;
   line-height: 1;
@@ -612,6 +604,187 @@ video {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
-.underline {
-  text-decoration-line: underline;
+.custom-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px) {
+  .custom-container {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .custom-container {
+      max-width: 640px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .custom-container {
+      max-width: 768px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .custom-container {
+      max-width: 1024px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .custom-container {
+      max-width: 1280px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .custom-container {
+      max-width: 1536px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .custom-container {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .custom-container {
+      max-width: 640px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .custom-container {
+      max-width: 768px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .custom-container {
+      max-width: 1024px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .custom-container {
+      max-width: 1280px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .custom-container {
+      max-width: 1536px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .custom-container {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .custom-container {
+      max-width: 640px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .custom-container {
+      max-width: 768px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .custom-container {
+      max-width: 1024px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .custom-container {
+      max-width: 1280px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .custom-container {
+      max-width: 1536px;
+    }
+  }
+}
+
+@media (min-width: 1280px) {
+  .custom-container {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .custom-container {
+      max-width: 640px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .custom-container {
+      max-width: 768px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .custom-container {
+      max-width: 1024px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .custom-container {
+      max-width: 1280px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .custom-container {
+      max-width: 1536px;
+    }
+  }
+}
+
+@media (min-width: 1536px) {
+  .custom-container {
+    width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .custom-container {
+      max-width: 640px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .custom-container {
+      max-width: 768px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .custom-container {
+      max-width: 1024px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .custom-container {
+      max-width: 1280px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .custom-container {
+      max-width: 1536px;
+    }
+  }
 }
