@@ -140,10 +140,12 @@ var skills = [drupal = {
 }, javascript = {
   name: 'JavaScript',
   icon: 'images/icons/javaScript.png'
-}, vue = {
-  name: 'Vue',
-  icon: 'images/icons/vue.png'
-}, jquery = {
+},
+// vue = {
+//     name: 'Vue',
+//     icon: 'images/icons/vue.png',
+// },
+jquery = {
   name: 'JQuery',
   icon: 'images/icons/jquery.png'
 }, tailwindcss = {

@@ -205,10 +205,10 @@ const skills = [
         name: 'JavaScript',
         icon: 'images/icons/javaScript.png',
     },
-    vue = {
-        name: 'Vue',
-        icon: 'images/icons/vue.png',
-    },
+    // vue = {
+    //     name: 'Vue',
+    //     icon: 'images/icons/vue.png',
+    // },
     jquery = {
         name: 'JQuery',
         icon: 'images/icons/jquery.png',
