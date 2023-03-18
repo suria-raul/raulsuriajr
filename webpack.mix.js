@@ -1,3 +1,4 @@
 let mix = require('laravel-mix');
 
-mix.js('js/main.js', 'dist/js/').setPublicPath('dist');
+mix.js('js/main.js', 'dist/js/')
+    .sass('css/style.scss', 'dist/css/');

@@ -84,7 +84,7 @@ function experiences() {
         let list = document.createElement('ul')
 
         div.classList.add('py-4', 'mb-4')
-        h4.classList.add('text-xl', 'my-1')
+        h4.classList.add('text-base', 'sm:text-lg', 'md:text-xl', 'my-1')
         span.classList.add('text-xs', 'mb-1.5', 'block', 'uppercase')
         list.classList.add('list-disc', 'pl-10')
 
@@ -93,6 +93,7 @@ function experiences() {
 
         work_experiences[company].responsibilities.forEach((responsibility) => {
             let item = document.createElement('li')
+            item.classList.add('text-base')
             item.textContent = responsibility
 
             list.appendChild(item)
