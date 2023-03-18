@@ -1,10 +1,4 @@
-#introduction {
-  min-height: 100svh;
-}
-#introduction .custom-container {
-  min-height: 100svh;
-}
-#introduction .custom-container .name:before, #introduction .custom-container .name:after {
+#introduction .container .name:before, #introduction .container .name:after {
   top: 50%;
   width: 30px;
   height: 4px;
@@ -13,33 +7,14 @@
   position: absolute;
   font-family: "Kaushan Script", cursive;
 }
-#introduction .custom-container .name:before {
+#introduction .container .name:before {
   left: 0;
   margin-left: -40px;
 }
-#introduction .custom-container .name:after {
+#introduction .container .name:after {
   right: 0;
   margin-right: -40px;
 }
-#introduction .custom-container .resume {
+#introduction .container .resume {
   border-bottom: 1px solid black;
-}
-
-#work-experience,
-#projects,
-#skills {
-  min-height: calc(100svh - 12rem);
-}
-#work-experience .custom-container,
-#projects .custom-container,
-#skills .custom-container {
-  min-height: calc(100svh - 12rem);
-}
-
-.custom-container {
-  max-width: 1170px;
-}
-
-.image-container img {
-  height: 250px;
 }

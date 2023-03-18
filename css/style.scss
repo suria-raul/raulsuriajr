@@ -1,9 +1,5 @@
 #introduction {
-  min-height: 100svh;
-
-  .custom-container {
-    min-height: 100svh;
-
+  .container {
     .name {
       &:before,
       &:after {
@@ -30,25 +26,5 @@
     .resume {
       border-bottom: 1px solid black;
     }
-  }
-}
-
-#work-experience,
-#projects,
-#skills {
-  min-height: calc(100svh - 12rem);
-
-  .custom-container {
-    min-height: calc(100svh - 12rem);
-  }
-}
-
-.custom-container {
-  max-width: 1170px;
-}
-
-.image-container {
-  img {
-    height: 250px;
   }
 }

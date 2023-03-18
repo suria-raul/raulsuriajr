@@ -40,13 +40,13 @@ var work_experiences = [yondu = {
 }];
 function experiences() {
   var _loop = function _loop() {
-    var container = document.querySelector('#work-experience .custom-container');
+    var container = document.querySelector('#work-experience .container');
     var div = document.createElement('div');
     var h4 = document.createElement('H4');
     var span = document.createElement('span');
     var list = document.createElement('ul');
     div.classList.add('py-4', 'mb-4');
-    h4.classList.add('text-base', 'sm:text-lg', 'md:text-xl', 'my-1');
+    h4.classList.add('text-base', 'sm:text-lg', 'md:text-xl', 'lg:text-2xl', 'xl:3xl', 'my-1');
     span.classList.add('text-xs', 'mb-1.5', 'block', 'uppercase');
     list.classList.add('list-disc', 'pl-10');
     h4.textContent = work_experiences[company].position;
@@ -117,7 +117,7 @@ function projectList() {
     span.textContent = projects[project].name;
     spanTech.textContent = projects[project].technology;
     imageContainer.classList.add('image-container', 'mb-3');
-    image.classList.add('h-full', 'mx-auto');
+    image.classList.add('w-80', 'h-60', 'mx-auto');
     span.classList.add('block', 'text-center');
     spanTech.classList.add('block', 'text-center');
     imageContainer.appendChild(image);

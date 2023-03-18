@@ -77,14 +77,14 @@ const work_experiences = [
 
 function experiences() {
     for (const company in work_experiences) {
-        let container = document.querySelector('#work-experience .custom-container')
+        let container = document.querySelector('#work-experience .container')
         let div = document.createElement('div')
         let h4 = document.createElement('H4')
         let span = document.createElement('span')
         let list = document.createElement('ul')
 
         div.classList.add('py-4', 'mb-4')
-        h4.classList.add('text-base', 'sm:text-lg', 'md:text-xl', 'my-1')
+        h4.classList.add('text-base', 'sm:text-lg', 'md:text-xl', 'lg:text-2xl', 'xl:3xl', 'my-1')
         span.classList.add('text-xs', 'mb-1.5', 'block', 'uppercase')
         list.classList.add('list-disc', 'pl-10')
 
@@ -168,7 +168,7 @@ function projectList() {
         spanTech.textContent = projects[project].technology
 
         imageContainer.classList.add('image-container', 'mb-3')
-        image.classList.add('h-full', 'mx-auto')
+        image.classList.add('w-80', 'h-60', 'mx-auto')
         span.classList.add('block', 'text-center')
         spanTech.classList.add('block', 'text-center')
 
