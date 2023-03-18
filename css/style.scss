@@ -1,5 +1,5 @@
 #introduction {
-  .container {
+  .item-container {
     .name {
       &:before,
       &:after {
@@ -27,4 +27,8 @@
       border-bottom: 1px solid black;
     }
   }
+}
+
+.item-container {
+  max-width: 1280px;
 }

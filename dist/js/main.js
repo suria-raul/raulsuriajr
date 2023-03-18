@@ -40,7 +40,7 @@ var work_experiences = [yondu = {
 }];
 function experiences() {
   var _loop = function _loop() {
-    var container = document.querySelector('#work-experience .container');
+    var container = document.querySelector('#work-experience .item-container');
     var div = document.createElement('div');
     var h4 = document.createElement('H4');
     var span = document.createElement('span');

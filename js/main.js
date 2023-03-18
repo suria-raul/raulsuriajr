@@ -77,7 +77,7 @@ const work_experiences = [
 
 function experiences() {
     for (const company in work_experiences) {
-        let container = document.querySelector('#work-experience .container')
+        let container = document.querySelector('#work-experience .item-container')
         let div = document.createElement('div')
         let h4 = document.createElement('H4')
         let span = document.createElement('span')
