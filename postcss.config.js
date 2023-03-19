@@ -1,9 +1,7 @@
-require('dotenv').config()
-
 module.exports = {
     plugins: {
         tailwindcss: {},
         autoprefixer: {},
-        ...(process.env.NODE_ENV === 'production' ? { cssnano: {} } : {})
+        ...(process.env.APP_ENV === 'production' ? { cssnano: {} } : {})
     }
 }
