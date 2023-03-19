@@ -1,5 +1,5 @@
-const work_experiences = [
-    yondu = {
+const work_experiences = {
+    yondu: {
         name: 'Yondu',
         position: 'Software Engineer - Drupal',
         duration: 'September 2022 - Present',
@@ -11,7 +11,7 @@ const work_experiences = [
             'Git and Composer',
         ]
     },
-    halcyon = {
+    halcyon: {
         name: 'Halcyon Digital Media Design',
         position: 'Drupal Developer',
         duration: 'March 2021 - September 2022',
@@ -25,7 +25,7 @@ const work_experiences = [
             'DDEV for local development',
         ]
     },
-    coreproc = {
+    coreproc: {
         name: 'Coreproc',
         position: 'PHP Developer',
         duration: 'September 2019 - March 2021',
@@ -40,7 +40,7 @@ const work_experiences = [
             'MVC for both drupal and laravel',
         ]
     },
-    purplebug = {
+    purplebug: {
         name: 'PurpleBug Inc',
         position: 'Junior Web Developer',
         duration: 'August 2018 - February 2019',
@@ -53,7 +53,7 @@ const work_experiences = [
             'Analyzing and reviewing design specifications',
         ]
     },
-    wfm = {
+    wns_wfm: {
         name: 'WNS Global Services',
         position: 'Executive Workforce',
         duration: 'April 2017 - September 2017',
@@ -62,7 +62,7 @@ const work_experiences = [
             'Monitoring and reporting agent\'s real time performance',
         ]
     },
-    united = {
+    wns_csr: {
         name: 'WNS Global Services',
         position: 'Customer service representative',
         duration: 'October 2015 - April 2017',
@@ -73,7 +73,7 @@ const work_experiences = [
             'etc.,',
         ]
     }
-]
+}
 
 function experiences() {
     for (const company in work_experiences) {
