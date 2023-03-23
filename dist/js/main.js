@@ -1,50 +1,167 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
+
+/***/ "./js/data.js":
+/*!********************!*\
+  !*** ./js/data.js ***!
+  \********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "datas": () => (/* binding */ datas)
+/* harmony export */ });
+var datas = {
+  workExperiences: {
+    yondu: {
+      name: 'Yondu',
+      position: 'Software Engineer - Drupal',
+      duration: 'September 2022 - Present',
+      responsibilities: ['Bug fixing and Troubleshooting', 'Applying enhancements to an existing application', 'Following best practice and standards', 'Code implementation enhancements', 'Git and Composer']
+    },
+    halcyon: {
+      name: 'Halcyon Digital Media Design',
+      position: 'Drupal Developer',
+      duration: 'March 2021 - September 2022',
+      responsibilities: ['Creating Drupal application from scratch', 'Mobile responsive', 'Custom modules, theming and Drupal MVC', 'Deploying applications in cpanel', 'Linux Shell Scripting', 'Git, Drush and Composer', 'DDEV for local development']
+    },
+    coreproc: {
+      name: 'Coreproc',
+      position: 'PHP Developer',
+      duration: 'September 2019 - March 2021',
+      responsibilities: ['Creating Drupal or Laravel applications from start to finish', 'Drupal and laravel web applications maintenance', 'Troubleshooting, Bug fixing and enhancements to drupal application', 'Integrating new technologies suggested by marketing', 'Linux Shell Scripting', 'Mobile responsive', 'Unit testing for API\'s created using laravel', 'MVC for both drupal and laravel']
+    },
+    purplebug: {
+      name: 'PurpleBug Inc',
+      position: 'Junior Web Developer',
+      duration: 'August 2018 - February 2019',
+      responsibilities: ['Bug fixing and Troubleshooting', 'Laravel and wordpress application maintenance', 'Applying enchancements to an existing application', 'Creating Mobile Responsive Applications', 'Providing Web support', 'Analyzing and reviewing design specifications']
+    },
+    wns_wfm: {
+      name: 'WNS Global Services',
+      position: 'Executive Workforce',
+      duration: 'April 2017 - September 2017',
+      responsibilities: ['Planning contact center agent\'s schedule', 'Monitoring and reporting agent\'s real time performance']
+    },
+    wns_csr: {
+      name: 'WNS Global Services',
+      position: 'Customer service representative',
+      duration: 'October 2015 - April 2017',
+      responsibilities: ['Provides resolution on all client inquiries', 'Booking tickets', 'Bag\'s Check-in', 'etc.,']
+    }
+  },
+  projects: {
+    charlton_media: {
+      name: 'Charlton Media',
+      technology: 'Drupal 9',
+      image: 'images/charlton_media.png',
+      link: 'https://charltonmedia.com/'
+    },
+    elbien_hotel: {
+      name: 'El bien hotel tagaytay',
+      technology: 'Drupal 9',
+      image: 'images/elbien_hotel_tagaytay.png',
+      link: 'https://elbienhotel.com/'
+    },
+    alstra: {
+      name: 'Alstra Contact Page',
+      technology: 'Drupal 8',
+      image: 'images/alstra_form.png',
+      link: 'https://ccs.alstra.ph/'
+    },
+    wellness_home_massage: {
+      name: 'Royal Wellness',
+      technology: 'Drupal 9',
+      image: 'images/royal_wellness.png',
+      link: 'https://wellnesshomemassage.com/'
+    },
+    bonakid: {
+      name: 'Bonakid',
+      technology: 'Drupal 8',
+      image: 'images/bonakid.png',
+      link: 'https://batangmaylaban.com.ph'
+    },
+    dryBrush: {
+      name: 'drybrush',
+      technology: 'Laravel',
+      image: 'images/dryBrush.png',
+      link: 'https://drybrush.com/'
+    },
+    mom_baby_hub: {
+      name: 'Mom and Baby Hub',
+      technology: 'Laravel',
+      image: 'images/momandbaby.png',
+      link: 'https://momandbabyhub.com/'
+    }
+  },
+  skills: {
+    drupal: {
+      name: 'Drupal',
+      icon: 'images/icons/drupal.png'
+    },
+    laravel: {
+      name: 'Laravel',
+      icon: 'images/icons/laravel.png'
+    },
+    php: {
+      name: 'PHP',
+      icon: 'images/icons/php.png'
+    },
+    mysql: {
+      name: 'MySQL',
+      icon: 'images/icons/mysql.png'
+    },
+    git: {
+      name: 'Git',
+      icon: 'images/icons/git.png'
+    },
+    javascript: {
+      name: 'JavaScript',
+      icon: 'images/icons/javaScript.png'
+    },
+    // vue: {
+    //     name: 'Vue',
+    //     icon: 'images/icons/vue.png',
+    // },
+    jquery: {
+      name: 'JQuery',
+      icon: 'images/icons/jquery.png'
+    },
+    tailwindcss: {
+      name: 'Tailwind Css',
+      icon: 'images/icons/tailwindcss.png'
+    },
+    bootstrap: {
+      name: 'Bootstrap',
+      icon: 'images/icons/bootstrap.png'
+    },
+    sass: {
+      name: 'Sass',
+      icon: 'images/icons/sass.png'
+    },
+    css3: {
+      name: 'CSS',
+      icon: 'images/icons/css3.png'
+    },
+    html: {
+      name: 'HTML',
+      icon: 'images/icons/html5.png'
+    }
+  }
+};
+
+/***/ }),
 
 /***/ "./js/main.js":
 /*!********************!*\
   !*** ./js/main.js ***!
   \********************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-var work_experiences = {
-  yondu: {
-    name: 'Yondu',
-    position: 'Software Engineer - Drupal',
-    duration: 'September 2022 - Present',
-    responsibilities: ['Bug fixing and Troubleshooting', 'Applying enhancements to an existing application', 'Following best practice and standards', 'Code implementation enhancements', 'Git and Composer']
-  },
-  halcyon: {
-    name: 'Halcyon Digital Media Design',
-    position: 'Drupal Developer',
-    duration: 'March 2021 - September 2022',
-    responsibilities: ['Creating Drupal application from scratch', 'Mobile responsive', 'Custom modules, theming and Drupal MVC', 'Deploying applications in cpanel', 'Linux Shell Scripting', 'Git, Drush and Composer', 'DDEV for local development']
-  },
-  coreproc: {
-    name: 'Coreproc',
-    position: 'PHP Developer',
-    duration: 'September 2019 - March 2021',
-    responsibilities: ['Creating Drupal or Laravel applications from start to finish', 'Drupal and laravel web applications maintenance', 'Troubleshooting, Bug fixing and enhancements to drupal application', 'Integrating new technologies suggested by marketing', 'Linux Shell Scripting', 'Mobile responsive', 'Unit testing for API\'s created using laravel', 'MVC for both drupal and laravel']
-  },
-  purplebug: {
-    name: 'PurpleBug Inc',
-    position: 'Junior Web Developer',
-    duration: 'August 2018 - February 2019',
-    responsibilities: ['Bug fixing and Troubleshooting', 'Laravel and wordpress application maintenance', 'Applying enchancements to an existing application', 'Creating Mobile Responsive Applications', 'Providing Web support', 'Analyzing and reviewing design specifications']
-  },
-  wns_wfm: {
-    name: 'WNS Global Services',
-    position: 'Executive Workforce',
-    duration: 'April 2017 - September 2017',
-    responsibilities: ['Planning contact center agent\'s schedule', 'Monitoring and reporting agent\'s real time performance']
-  },
-  wns_csr: {
-    name: 'WNS Global Services',
-    position: 'Customer service representative',
-    duration: 'October 2015 - April 2017',
-    responsibilities: ['Provides resolution on all client inquiries', 'Booking tickets', 'Bag\'s Check-in', 'etc.,']
-  }
-};
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./data */ "./js/data.js");
+
 function experiences() {
   var _loop = function _loop() {
     var container = document.querySelector('#work-experience .item-container');
@@ -56,9 +173,9 @@ function experiences() {
     h4.classList.add('text-base', 'sm:text-lg', 'md:text-xl', 'lg:text-2xl', 'xl:3xl', 'my-1');
     span.classList.add('text-xs', 'mb-1.5', 'block', 'uppercase');
     list.classList.add('list-disc', 'pl-10');
-    h4.textContent = work_experiences[company].position;
-    span.textContent = work_experiences[company].name + ', ' + work_experiences[company].duration;
-    work_experiences[company].responsibilities.forEach(function (responsibility) {
+    h4.textContent = _data__WEBPACK_IMPORTED_MODULE_0__.datas.workExperiences[company].position;
+    span.textContent = _data__WEBPACK_IMPORTED_MODULE_0__.datas.workExperiences[company].name + ', ' + _data__WEBPACK_IMPORTED_MODULE_0__.datas.workExperiences[company].duration;
+    _data__WEBPACK_IMPORTED_MODULE_0__.datas.workExperiences[company].responsibilities.forEach(function (responsibility) {
       var item = document.createElement('li');
       item.classList.add('text-base');
       item.textContent = responsibility;
@@ -69,60 +186,24 @@ function experiences() {
     div.appendChild(list);
     container.appendChild(div);
   };
-  for (var company in work_experiences) {
+  for (var company in _data__WEBPACK_IMPORTED_MODULE_0__.datas.workExperiences) {
     _loop();
   }
 }
-var projects = [charlton_media = {
-  name: 'Charlton Media',
-  technology: 'Drupal 9',
-  image: 'images/charlton_media.png',
-  link: 'https://charltonmedia.com/'
-}, elbien_hotel = {
-  name: 'El bien hotel tagaytay',
-  technology: 'Drupal 9',
-  image: 'images/elbien_hotel_tagaytay.png',
-  link: 'https://elbienhotel.com/'
-}, alstra = {
-  name: 'Alstra Contact Page',
-  technology: 'Drupal 8',
-  image: 'images/alstra_form.png',
-  link: 'https://ccs.alstra.ph/'
-}, wellness_home_massage = {
-  name: 'Royal Wellness',
-  technology: 'Drupal 9',
-  image: 'images/royal_wellness.png',
-  link: 'https://wellnesshomemassage.com/'
-}, bonakid = {
-  name: 'Bonakid',
-  technology: 'Drupal 8',
-  image: 'images/bonakid.png',
-  link: 'https://batangmaylaban.com.ph'
-}, dryBrush = {
-  name: 'drybrush',
-  technology: 'Laravel',
-  image: 'images/dryBrush.png',
-  link: 'https://drybrush.com/'
-}, mom_baby_hub = {
-  name: 'Mom and Baby Hub',
-  technology: 'Laravel',
-  image: 'images/momandbaby.png',
-  link: 'https://momandbabyhub.com/'
-}];
 function projectList() {
-  for (var project in projects) {
+  for (var project in _data__WEBPACK_IMPORTED_MODULE_0__.datas.projects) {
     var projectContainer = document.querySelector('#projects .projects-container');
     var anchor = document.createElement('a');
     var imageContainer = document.createElement('div');
     var image = document.createElement('img');
     var span = document.createElement('span');
     var spanTech = document.createElement('span');
-    anchor.setAttribute('href', projects[project].link);
+    anchor.setAttribute('href', _data__WEBPACK_IMPORTED_MODULE_0__.datas.projects[project].link);
     anchor.setAttribute('target', '_blank');
-    image.setAttribute('src', projects[project].image);
-    image.setAttribute('alt', projects[project].name);
-    span.textContent = projects[project].name;
-    spanTech.textContent = projects[project].technology;
+    image.setAttribute('src', _data__WEBPACK_IMPORTED_MODULE_0__.datas.projects[project].image);
+    image.setAttribute('alt', _data__WEBPACK_IMPORTED_MODULE_0__.datas.projects[project].name);
+    span.textContent = _data__WEBPACK_IMPORTED_MODULE_0__.datas.projects[project].name;
+    spanTech.textContent = _data__WEBPACK_IMPORTED_MODULE_0__.datas.projects[project].technology;
     imageContainer.classList.add('image-container', 'mb-3');
     image.classList.add('w-80', 'h-60', 'mx-auto');
     span.classList.add('block', 'text-center');
@@ -134,57 +215,15 @@ function projectList() {
     projectContainer.appendChild(anchor);
   }
 }
-var skills = [drupal = {
-  name: 'Drupal',
-  icon: 'images/icons/drupal.png'
-}, laravel = {
-  name: 'Laravel',
-  icon: 'images/icons/laravel.png'
-}, php = {
-  name: 'PHP',
-  icon: 'images/icons/php.png'
-}, mysql = {
-  name: 'MySQL',
-  icon: 'images/icons/mysql.png'
-}, git = {
-  name: 'Git',
-  icon: 'images/icons/git.png'
-}, javascript = {
-  name: 'JavaScript',
-  icon: 'images/icons/javaScript.png'
-},
-// vue = {
-//     name: 'Vue',
-//     icon: 'images/icons/vue.png',
-// },
-jquery = {
-  name: 'JQuery',
-  icon: 'images/icons/jquery.png'
-}, tailwindcss = {
-  name: 'Tailwind Css',
-  icon: 'images/icons/tailwindcss.png'
-}, bootstrap = {
-  name: 'Bootstrap',
-  icon: 'images/icons/bootstrap.png'
-}, sass = {
-  name: 'Sass',
-  icon: 'images/icons/sass.png'
-}, css3 = {
-  name: 'CSS',
-  icon: 'images/icons/css3.png'
-}, html = {
-  name: 'HTML',
-  icon: 'images/icons/html5.png'
-}];
 function skillList() {
-  for (var skill in skills) {
+  for (var skill in _data__WEBPACK_IMPORTED_MODULE_0__.datas.skills) {
     var container = document.querySelector('#skills .skills-container');
     var icon = document.createElement('img');
     var iconContainer = document.createElement('div');
     var span = document.createElement('span');
-    icon.setAttribute('src', skills[skill].icon);
-    icon.setAttribute('alt', skills[skill].name);
-    span.textContent = skills[skill].name;
+    icon.setAttribute('src', _data__WEBPACK_IMPORTED_MODULE_0__.datas.skills[skill].icon);
+    icon.setAttribute('alt', _data__WEBPACK_IMPORTED_MODULE_0__.datas.skills[skill].name);
+    span.textContent = _data__WEBPACK_IMPORTED_MODULE_0__.datas.skills[skill].name;
     icon.classList.add('w-24', 'block', 'mx-auto', 'mb-2');
     span.classList.add('capitalize');
     iconContainer.classList.add('block', 'mx-auto', 'text-center');
@@ -207,7 +246,6 @@ window.onload = function () {
   \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -273,6 +311,18 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
 /******/ 		};
 /******/ 	})();
 /******/ 	
