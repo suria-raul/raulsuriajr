@@ -232,37 +232,35 @@ function skillList() {
     container.appendChild(iconContainer);
   }
 }
-function resizeMenuDotWhenActive() {
-  var dots = Array.from(document.querySelectorAll('#menu ul li a'));
-  dots.forEach(function (link, index) {
-    link.addEventListener('click', function () {
-      this.classList.add('active');
-      removeActiveClass(index);
-    });
+function showSideMenu() {
+  var hamburgerMenu = document.querySelector('#hamburger');
+  var menu = document.querySelector('#actual-menu');
+  var sections = Array.from(document.querySelectorAll('#app section'));
+  var menuList = Array.from(document.querySelectorAll('#actual-menu ul li'));
+  hamburgerMenu.addEventListener('click', function () {
+    this.classList.add('menu-active');
+    menu.classList.add('active');
+  });
+  sections.forEach(function (section) {
+    hideSideMenu(section);
+  });
+  menuList.forEach(function (item) {
+    hideSideMenu(item);
   });
 }
-function removeActiveClass(index) {
-  var dots = Array.from(document.querySelectorAll('#menu ul li a'));
-  dots.splice(index, 1);
-  dots.forEach(function (dot) {
-    dot.classList.remove('active');
-  });
-}
-function addActiveClassToLastSelectedDot() {
-  var selectedDot = location.hash;
-  var dots = Array.from(document.querySelectorAll('#menu ul li a'));
-  dots.forEach(function (dot) {
-    if (selectedDot === dot.getAttribute('href')) {
-      dot.classList.add('active');
-    }
+function hideSideMenu(element) {
+  var hamburgerMenu = document.querySelector('#hamburger');
+  var menu = document.querySelector('#actual-menu');
+  element.addEventListener('click', function () {
+    hamburgerMenu.classList.remove('menu-active');
+    menu.classList.remove('active');
   });
 }
 window.onload = function () {
   experiences();
   projectList();
   skillList();
-  resizeMenuDotWhenActive();
-  addActiveClassToLastSelectedDot();
+  showSideMenu();
 };
 
 /***/ }),

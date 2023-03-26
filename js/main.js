@@ -84,31 +84,33 @@ function skillList() {
     }
 }
 
-function resizeMenuDotWhenActive() {
-    let dots = Array.from(document.querySelectorAll('#menu ul li a'))
-    dots.forEach((link, index) => {
-        link.addEventListener('click', function () {
-            this.classList.add('active')
-            removeActiveClass(index)
-        })
+function showSideMenu() {
+    let hamburgerMenu = document.querySelector('#hamburger')
+    let menu = document.querySelector('#actual-menu')
+    let sections = Array.from(document.querySelectorAll('#app section'))
+    let menuList = Array.from(document.querySelectorAll('#actual-menu ul li'))
+
+    hamburgerMenu.addEventListener('click', function () {
+        this.classList.add('menu-active')
+        menu.classList.add('active')
+    })
+
+    sections.forEach((section) => {
+        hideSideMenu(section)
+    })
+
+    menuList.forEach((item) => {
+        hideSideMenu(item)
     })
 }
 
-function removeActiveClass(index) {
-    let dots = Array.from(document.querySelectorAll('#menu ul li a'))
-    dots.splice(index, 1)
-    dots.forEach((dot) => {
-        dot.classList.remove('active')
-    })
-}
+function hideSideMenu(element) {
+    let hamburgerMenu = document.querySelector('#hamburger')
+    let menu = document.querySelector('#actual-menu')
 
-function addActiveClassToLastSelectedDot() {
-    let selectedDot = location.hash
-    let dots = Array.from(document.querySelectorAll('#menu ul li a'))
-    dots.forEach((dot) => {
-        if (selectedDot === dot.getAttribute('href')) {
-            dot.classList.add('active')
-        }
+    element.addEventListener('click', function () {
+        hamburgerMenu.classList.remove('menu-active')
+        menu.classList.remove('active')
     })
 }
 
@@ -116,6 +118,5 @@ window.onload = () => {
     experiences()
     projectList()
     skillList()
-    resizeMenuDotWhenActive()
-    addActiveClassToLastSelectedDot()
+    showSideMenu()
 }
