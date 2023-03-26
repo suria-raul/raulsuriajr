@@ -233,7 +233,7 @@ function skillList() {
   }
 }
 function showSideMenu() {
-  var hamburgerMenu = document.querySelector('#hamburger');
+  var hamburgerMenu = document.querySelector('#menu');
   var menu = document.querySelector('#actual-menu');
   var sections = Array.from(document.querySelectorAll('#app section'));
   var menuList = Array.from(document.querySelectorAll('#actual-menu ul li'));
@@ -249,7 +249,7 @@ function showSideMenu() {
   });
 }
 function hideSideMenu(element) {
-  var hamburgerMenu = document.querySelector('#hamburger');
+  var hamburgerMenu = document.querySelector('#menu');
   var menu = document.querySelector('#actual-menu');
   element.scrollIntoView();
   element.addEventListener('click', function () {

@@ -85,7 +85,7 @@ function skillList() {
 }
 
 function showSideMenu() {
-    let hamburgerMenu = document.querySelector('#hamburger')
+    let hamburgerMenu = document.querySelector('#menu')
     let menu = document.querySelector('#actual-menu')
     let sections = Array.from(document.querySelectorAll('#app section'))
     let menuList = Array.from(document.querySelectorAll('#actual-menu ul li'))
@@ -105,7 +105,7 @@ function showSideMenu() {
 }
 
 function hideSideMenu(element) {
-    let hamburgerMenu = document.querySelector('#hamburger')
+    let hamburgerMenu = document.querySelector('#menu')
     let menu = document.querySelector('#actual-menu')
 
     element.scrollIntoView()
