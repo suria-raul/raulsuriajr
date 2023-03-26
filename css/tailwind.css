@@ -9,3 +9,11 @@
 .skills-container {
     @apply grid sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-5 xl:grid-cols-5 xl:gap-6 gap-y-20 sm:gap-y-20 md:gap-y-24 lg:gap-y-28 xl:gap-y-32;
 }
+
+.menu-dot {
+    @apply bg-white rounded-full inline-block active:w-9 active:h-9 p-2 box-border w-7 h-7 flex items-center justify-center mx-auto transition-all;
+}
+
+.menu-dot.active {
+    @apply w-9 h-9;
+}

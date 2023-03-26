@@ -84,8 +84,38 @@ function skillList() {
     }
 }
 
+function resizeMenuDotWhenActive() {
+    let dots = Array.from(document.querySelectorAll('#menu ul li a'))
+    dots.forEach((link, index) => {
+        link.addEventListener('click', function () {
+            this.classList.add('active')
+            removeActiveClass(index)
+        })
+    })
+}
+
+function removeActiveClass(index) {
+    let dots = Array.from(document.querySelectorAll('#menu ul li a'))
+    dots.splice(index, 1)
+    dots.forEach((dot) => {
+        dot.classList.remove('active')
+    })
+}
+
+function addActiveClassToLastSelectedDot() {
+    let selectedDot = location.hash
+    let dots = Array.from(document.querySelectorAll('#menu ul li a'))
+    dots.forEach((dot) => {
+        if (selectedDot === dot.getAttribute('href')) {
+            dot.classList.add('active')
+        }
+    })
+}
+
 window.onload = () => {
     experiences()
     projectList()
     skillList()
+    resizeMenuDotWhenActive()
+    addActiveClassToLastSelectedDot()
 }

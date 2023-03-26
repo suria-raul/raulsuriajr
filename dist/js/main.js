@@ -232,10 +232,37 @@ function skillList() {
     container.appendChild(iconContainer);
   }
 }
+function resizeMenuDotWhenActive() {
+  var dots = Array.from(document.querySelectorAll('#menu ul li a'));
+  dots.forEach(function (link, index) {
+    link.addEventListener('click', function () {
+      this.classList.add('active');
+      removeActiveClass(index);
+    });
+  });
+}
+function removeActiveClass(index) {
+  var dots = Array.from(document.querySelectorAll('#menu ul li a'));
+  dots.splice(index, 1);
+  dots.forEach(function (dot) {
+    dot.classList.remove('active');
+  });
+}
+function addActiveClassToLastSelectedDot() {
+  var selectedDot = location.hash;
+  var dots = Array.from(document.querySelectorAll('#menu ul li a'));
+  dots.forEach(function (dot) {
+    if (selectedDot === dot.getAttribute('href')) {
+      dot.classList.add('active');
+    }
+  });
+}
 window.onload = function () {
   experiences();
   projectList();
   skillList();
+  resizeMenuDotWhenActive();
+  addActiveClassToLastSelectedDot();
 };
 
 /***/ }),
