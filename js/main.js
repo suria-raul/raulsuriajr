@@ -84,8 +84,41 @@ function skillList() {
     }
 }
 
+function showSideMenu() {
+    let hamburgerMenu = document.querySelector('#menu')
+    let menu = document.querySelector('#actual-menu')
+    let sections = Array.from(document.querySelectorAll('#app section'))
+    let menuList = Array.from(document.querySelectorAll('#actual-menu ul li'))
+
+    hamburgerMenu.addEventListener('click', function () {
+        this.classList.add('menu-active')
+        menu.classList.add('active')
+    })
+
+    sections.forEach((section) => {
+        hideSideMenu(section)
+    })
+
+    menuList.forEach((item) => {
+        hideSideMenu(item)
+    })
+}
+
+function hideSideMenu(element) {
+    let hamburgerMenu = document.querySelector('#menu')
+    let menu = document.querySelector('#actual-menu')
+
+    element.scrollIntoView()
+
+    element.addEventListener('click', function () {
+        hamburgerMenu.classList.remove('menu-active')
+        menu.classList.remove('active')
+    })
+}
+
 window.onload = () => {
     experiences()
     projectList()
     skillList()
+    showSideMenu()
 }

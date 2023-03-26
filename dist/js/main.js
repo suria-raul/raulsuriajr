@@ -232,10 +232,36 @@ function skillList() {
     container.appendChild(iconContainer);
   }
 }
+function showSideMenu() {
+  var hamburgerMenu = document.querySelector('#menu');
+  var menu = document.querySelector('#actual-menu');
+  var sections = Array.from(document.querySelectorAll('#app section'));
+  var menuList = Array.from(document.querySelectorAll('#actual-menu ul li'));
+  hamburgerMenu.addEventListener('click', function () {
+    this.classList.add('menu-active');
+    menu.classList.add('active');
+  });
+  sections.forEach(function (section) {
+    hideSideMenu(section);
+  });
+  menuList.forEach(function (item) {
+    hideSideMenu(item);
+  });
+}
+function hideSideMenu(element) {
+  var hamburgerMenu = document.querySelector('#menu');
+  var menu = document.querySelector('#actual-menu');
+  element.scrollIntoView();
+  element.addEventListener('click', function () {
+    hamburgerMenu.classList.remove('menu-active');
+    menu.classList.remove('active');
+  });
+}
 window.onload = function () {
   experiences();
   projectList();
   skillList();
+  showSideMenu();
 };
 
 /***/ }),
