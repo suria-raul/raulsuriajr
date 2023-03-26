@@ -11,6 +11,12 @@ module.exports = {
       },
       colors: {
         'golden-yellow': '#d4af37',
+      },
+      transitionProperty: {
+        'visibility': 'visibility',
+      },
+      zIndex: {
+        '1040': '1040',
       }
     },
     fontFamily: {

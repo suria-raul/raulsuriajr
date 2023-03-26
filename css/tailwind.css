@@ -17,3 +17,7 @@
 .menu-dot.active {
     @apply w-9 h-9;
 }
+
+#hamburger {
+    @apply w-14 h-14 fixed top-5 right-5 flex items-center flex-col bg-black justify-evenly rounded cursor-pointer transition-visibility ease-out duration-75 z-1040;
+}
