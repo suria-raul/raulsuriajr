@@ -108,6 +108,8 @@ function hideSideMenu(element) {
     let hamburgerMenu = document.querySelector('#hamburger')
     let menu = document.querySelector('#actual-menu')
 
+    element.scrollIntoView()
+
     element.addEventListener('click', function () {
         hamburgerMenu.classList.remove('menu-active')
         menu.classList.remove('active')

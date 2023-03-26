@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 #introduction {
   .item-container {
     .name {
@@ -94,6 +98,8 @@
         font-size: 2rem;
         color: white;
         text-decoration: none;
+        display: block;
+        width: 100%;
       }
     }
   }
