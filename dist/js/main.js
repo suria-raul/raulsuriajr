@@ -257,11 +257,18 @@ function hideSideMenu(element) {
     menu.classList.remove('active');
   });
 }
+function scrollToSection() {
+  var targetElement = location.hash;
+  document.querySelector(targetElement).scrollIntoView({
+    behavior: 'smooth'
+  });
+}
 window.onload = function () {
   experiences();
   projectList();
   skillList();
   showSideMenu();
+  scrollToSection();
 };
 
 /***/ }),

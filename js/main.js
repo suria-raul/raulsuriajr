@@ -116,9 +116,15 @@ function hideSideMenu(element) {
     })
 }
 
+function scrollToSection() {
+    let targetElement = location.hash
+    document.querySelector(targetElement).scrollIntoView({behavior: 'smooth'})
+}
+
 window.onload = () => {
     experiences()
     projectList()
     skillList()
     showSideMenu()
+    scrollToSection()
 }
