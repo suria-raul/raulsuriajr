@@ -17,7 +17,7 @@ var datas = {
     yondu: {
       name: 'Yondu',
       position: 'Software Engineer - Drupal',
-      duration: 'September 2022 - Present',
+      duration: 'September 2022 - April 2023',
       responsibilities: ['Bug fixing and Troubleshooting', 'Applying enhancements to an existing application', 'Following best practice and standards', 'Code implementation enhancements', 'Git and Composer']
     },
     halcyon: {
@@ -120,10 +120,10 @@ var datas = {
       name: 'JavaScript',
       icon: 'images/icons/javaScript.png'
     },
-    // vue: {
-    //     name: 'Vue',
-    //     icon: 'images/icons/vue.png',
-    // },
+    vue: {
+      name: 'Vue',
+      icon: 'images/icons/vue.png'
+    },
     jquery: {
       name: 'JQuery',
       icon: 'images/icons/jquery.png'

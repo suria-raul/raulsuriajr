@@ -1,1 +1,24 @@
-#introduction .item-container .name:after,#introduction .item-container .name:before{background:#000;content:"";font-family:Kaushan Script,cursive;height:4px;position:absolute;top:50%;width:30px}#introduction .item-container .name:before{left:0;margin-left:-40px}#introduction .item-container .name:after{margin-right:-40px;right:0}#introduction .item-container .resume{border-bottom:1px solid #000}.item-container{max-width:1280px}
+#introduction .item-container .name:before, #introduction .item-container .name:after {
+  top: 50%;
+  width: 30px;
+  height: 4px;
+  content: "";
+  background: #000;
+  position: absolute;
+  font-family: "Kaushan Script", cursive;
+}
+#introduction .item-container .name:before {
+  left: 0;
+  margin-left: -40px;
+}
+#introduction .item-container .name:after {
+  right: 0;
+  margin-right: -40px;
+}
+#introduction .item-container .resume {
+  border-bottom: 1px solid black;
+}
+
+.item-container {
+  max-width: 1280px;
+}
