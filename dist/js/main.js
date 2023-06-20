@@ -17,7 +17,7 @@ var datas = {
     yondu: {
       name: 'Yondu',
       position: 'Software Engineer - Drupal',
-      duration: 'September 2022 - April 2023',
+      duration: 'September 2022 - June 2023',
       responsibilities: ['Bug fixing and Troubleshooting', 'Applying enhancements to an existing application', 'Following best practice and standards', 'Code implementation enhancements', 'Git and Composer']
     },
     halcyon: {
