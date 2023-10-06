@@ -33,3 +33,7 @@
 #actual-menu.active {
     @apply right-0;
 }
+
+.item-container {
+    max-width: 1280px;
+}
