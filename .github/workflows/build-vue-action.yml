@@ -1,7 +1,8 @@
-name: Build Vue
-run-name: Build Vue
+name: Build Vue Action
+run-name: Build Vue Action
 on: [push]
 jobs:
   Build-vue-actions:
+    - run: echo "Testing!"
     - run: npm --version
     - run: npm run build
