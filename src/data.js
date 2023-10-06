@@ -2,7 +2,7 @@ const data = {
     profile: {
         name: 'Raul Suria Jr',
         title: 'PHP Developer',
-        resume: 'Download Resume',
+        download_resume: 'Download Resume',
         resume_link: 'pdf/Raul_Suria_Jr.pdf'
     },
     workExperience: {
