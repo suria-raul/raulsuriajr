@@ -9,7 +9,7 @@ export default {
 <template>
   <section id="introduction" class="w-full bg-golden-yellow min-h-screen box-border">
     <div class="item-container box-border h-screen p-6 mx-auto  flex justify-center items-center flex-col text-black">
-      <img src="images/profile.jpg" alt="Profile" class="h-48 w-48 mx-auto rounded-full my-4">
+      <img :src="profile.photo" alt="Profile" class="h-48 w-48 mx-auto rounded-full my-4">
       <h1 class="name text-3xl sm:text-3xl md:text-4xl lg:text-5xl my-4 relative font-kaushan -rotate-5">
         {{ profile.name }}
       </h1>

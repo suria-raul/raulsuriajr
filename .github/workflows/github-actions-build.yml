@@ -1,0 +1,7 @@
+name: Build Vue
+run-name: Build Vue
+on: [push]
+jobs:
+  Build-vue-actions:
+    - run: npm --version
+    - run: npm run build

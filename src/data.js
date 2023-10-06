@@ -3,7 +3,8 @@ const data = {
         name: 'Raul Suria Jr',
         title: 'PHP Developer',
         download_resume: 'Download Resume',
-        resume_link: 'pdf/Raul_Suria_Jr.pdf'
+        resume_link: 'pdf/Raul_Suria_Jr.pdf',
+        photo: 'images/profile.jpg'
     },
     workExperience: {
         title: 'Work Experience',
