@@ -87,30 +87,20 @@ function skillList() {
 function showSideMenu() {
     let hamburgerMenu = document.querySelector('#menu')
     let menu = document.querySelector('#actual-menu')
-    let sections = Array.from(document.querySelectorAll('#app section'))
-    let menuList = Array.from(document.querySelectorAll('#actual-menu ul li'))
 
-    hamburgerMenu.addEventListener('click', function () {
+    hamburgerMenu.addEventListener('click', function (event) {
+        event.stopPropagation()
         this.classList.add('menu-active')
         menu.classList.add('active')
     })
-
-    sections.forEach((section) => {
-        hideSideMenu(section)
-    })
-
-    menuList.forEach((item) => {
-        hideSideMenu(item)
-    })
 }
 
-function hideSideMenu(element) {
+function hideSideMenu() {
     let hamburgerMenu = document.querySelector('#menu')
     let menu = document.querySelector('#actual-menu')
+    let body = document.querySelector('body')
 
-    element.scrollIntoView()
-
-    element.addEventListener('click', function () {
+    body.addEventListener('click', function () {
         hamburgerMenu.classList.remove('menu-active')
         menu.classList.remove('active')
     })
@@ -118,7 +108,9 @@ function hideSideMenu(element) {
 
 function scrollToSection() {
     let targetElement = location.hash
-    document.querySelector(targetElement).scrollIntoView({behavior: 'smooth'})
+    if(!targetElement === '') {
+        document.querySelector(targetElement).scrollIntoView({behavior: 'smooth'})
+    }
 }
 
 window.onload = () => {
@@ -126,5 +118,6 @@ window.onload = () => {
     projectList()
     skillList()
     showSideMenu()
+    hideSideMenu()
     scrollToSection()
 }

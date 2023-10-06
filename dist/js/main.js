@@ -10,7 +10,7 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "datas": () => (/* binding */ datas)
+/* harmony export */   datas: () => (/* binding */ datas)
 /* harmony export */ });
 var datas = {
   workExperiences: {
@@ -235,39 +235,35 @@ function skillList() {
 function showSideMenu() {
   var hamburgerMenu = document.querySelector('#menu');
   var menu = document.querySelector('#actual-menu');
-  var sections = Array.from(document.querySelectorAll('#app section'));
-  var menuList = Array.from(document.querySelectorAll('#actual-menu ul li'));
-  hamburgerMenu.addEventListener('click', function () {
+  hamburgerMenu.addEventListener('click', function (event) {
+    event.stopPropagation();
     this.classList.add('menu-active');
     menu.classList.add('active');
   });
-  sections.forEach(function (section) {
-    hideSideMenu(section);
-  });
-  menuList.forEach(function (item) {
-    hideSideMenu(item);
-  });
 }
-function hideSideMenu(element) {
+function hideSideMenu() {
   var hamburgerMenu = document.querySelector('#menu');
   var menu = document.querySelector('#actual-menu');
-  element.scrollIntoView();
-  element.addEventListener('click', function () {
+  var body = document.querySelector('body');
+  body.addEventListener('click', function () {
     hamburgerMenu.classList.remove('menu-active');
     menu.classList.remove('active');
   });
 }
 function scrollToSection() {
   var targetElement = location.hash;
-  document.querySelector(targetElement).scrollIntoView({
-    behavior: 'smooth'
-  });
+  if (!targetElement === '') {
+    document.querySelector(targetElement).scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
 }
 window.onload = function () {
   experiences();
   projectList();
   skillList();
   showSideMenu();
+  hideSideMenu();
   scrollToSection();
 };
 
