@@ -21,7 +21,7 @@ export default {
 </script>
 
 <template>
-  <Profile />
+  <Profile :profile="data.profile" />
   <WorkExperience :work-experience="data.workExperience"/>
   <Projects :projects="data.projects" />
   <Skills :skills="data.skills" />
