@@ -7,4 +7,5 @@ jobs:
     steps:
       - run: echo "Building!"
       - run: npm --version
+      - run: npm install
       - run: npm run build
