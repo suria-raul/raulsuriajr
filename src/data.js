@@ -1,78 +1,81 @@
 const data = {
     workExperience: {
-        yondu: {
-            name: 'Yondu',
-            position: 'Software Engineer - Drupal',
-            duration: 'September 2022 - June 2023',
-            responsibilities: [
-                'Bug fixing and Troubleshooting',
-                'Applying enhancements to an existing application',
-                'Following best practice and standards',
-                'Code implementation enhancements',
-                'Git and Composer',
-            ]
-        },
-        halcyon: {
-            name: 'Halcyon Digital Media Design',
-            position: 'Drupal Developer',
-            duration: 'March 2021 - September 2022',
-            responsibilities: [
-                'Creating Drupal application from scratch',
-                'Mobile responsive',
-                'Custom modules, theming and Drupal MVC',
-                'Deploying applications in cpanel',
-                'Linux Shell Scripting',
-                'Git, Drush and Composer',
-                'DDEV for local development',
-            ]
-        },
-        coreproc: {
-            name: 'Coreproc',
-            position: 'PHP Developer',
-            duration: 'September 2019 - March 2021',
-            responsibilities: [
-                'Creating Drupal or Laravel applications from start to finish',
-                'Drupal and laravel web applications maintenance',
-                'Troubleshooting, Bug fixing and enhancements to drupal application',
-                'Integrating new technologies suggested by marketing',
-                'Linux Shell Scripting',
-                'Mobile responsive',
-                'Unit testing for API\'s created using laravel',
-                'MVC for both drupal and laravel',
-            ]
-        },
-        purplebug: {
-            name: 'PurpleBug Inc',
-            position: 'Junior Web Developer',
-            duration: 'August 2018 - February 2019',
-            responsibilities: [
-                'Bug fixing and Troubleshooting',
-                'Laravel and wordpress application maintenance',
-                'Applying enchancements to an existing application',
-                'Creating Mobile Responsive Applications',
-                'Providing Web support',
-                'Analyzing and reviewing design specifications',
-            ]
-        },
-        wns_wfm: {
-            name: 'WNS Global Services',
-            position: 'Executive Workforce',
-            duration: 'April 2017 - September 2017',
-            responsibilities: [
-                'Planning contact center agent\'s schedule',
-                'Monitoring and reporting agent\'s real time performance',
-            ]
-        },
-        wns_csr: {
-            name: 'WNS Global Services',
-            position: 'Customer service representative',
-            duration: 'October 2015 - April 2017',
-            responsibilities: [
-                'Provides resolution on all client inquiries',
-                'Booking tickets',
-                'Bag\'s Check-in',
-                'etc.,',
-            ]
+        title: 'Work Experience',
+        experiences: {
+            yondu: {
+                name: 'Yondu',
+                position: 'Software Engineer - Drupal',
+                duration: 'September 2022 - June 2023',
+                responsibilities: [
+                    'Bug fixing and Troubleshooting',
+                    'Applying enhancements to an existing application',
+                    'Following best practice and standards',
+                    'Code implementation enhancements',
+                    'Git and Composer',
+                ]
+            },
+            halcyon: {
+                name: 'Halcyon Digital Media Design',
+                position: 'Drupal Developer',
+                duration: 'March 2021 - September 2022',
+                responsibilities: [
+                    'Creating Drupal application from scratch',
+                    'Mobile responsive',
+                    'Custom modules, theming and Drupal MVC',
+                    'Deploying applications in cpanel',
+                    'Linux Shell Scripting',
+                    'Git, Drush and Composer',
+                    'DDEV for local development',
+                ]
+            },
+            coreproc: {
+                name: 'Coreproc',
+                position: 'PHP Developer',
+                duration: 'September 2019 - March 2021',
+                responsibilities: [
+                    'Creating Drupal or Laravel applications from start to finish',
+                    'Drupal and laravel web applications maintenance',
+                    'Troubleshooting, Bug fixing and enhancements to drupal application',
+                    'Integrating new technologies suggested by marketing',
+                    'Linux Shell Scripting',
+                    'Mobile responsive',
+                    'Unit testing for API\'s created using laravel',
+                    'MVC for both drupal and laravel',
+                ]
+            },
+            purplebug: {
+                name: 'PurpleBug Inc',
+                position: 'Junior Web Developer',
+                duration: 'August 2018 - February 2019',
+                responsibilities: [
+                    'Bug fixing and Troubleshooting',
+                    'Laravel and wordpress application maintenance',
+                    'Applying enchancements to an existing application',
+                    'Creating Mobile Responsive Applications',
+                    'Providing Web support',
+                    'Analyzing and reviewing design specifications',
+                ]
+            },
+            wns_wfm: {
+                name: 'WNS Global Services',
+                position: 'Executive Workforce',
+                duration: 'April 2017 - September 2017',
+                responsibilities: [
+                    'Planning contact center agent\'s schedule',
+                    'Monitoring and reporting agent\'s real time performance',
+                ]
+            },
+            wns_csr: {
+                name: 'WNS Global Services',
+                position: 'Customer service representative',
+                duration: 'October 2015 - April 2017',
+                responsibilities: [
+                    'Provides resolution on all client inquiries',
+                    'Booking tickets',
+                    'Bag\'s Check-in',
+                    'etc.,',
+                ]
+            }
         }
     },
     projects: {

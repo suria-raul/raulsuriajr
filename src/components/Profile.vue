@@ -46,8 +46,4 @@ export default {}
 #introduction .item-container .resume {
   border-bottom: 1px solid black;
 }
-
-.item-container {
-  max-width: 1280px;
-}
 </style>
