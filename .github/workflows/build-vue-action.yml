@@ -3,6 +3,8 @@ run-name: Build Vue Action
 on: [push]
 jobs:
   Build-vue-actions:
-    - run: echo "Testing!"
-    - run: npm --version
-    - run: npm run build
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Building!"
+      - run: npm --version
+      - run: npm run build
