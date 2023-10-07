@@ -2,15 +2,38 @@
 
 set -e
 
+npm --version
+
 npm run build
 
-cd dist
+cd submodule
 
-git init
-git add -A
-git commit -m 'deploy'
+git submodule add -f git@github.com:suria-raul/raulsuriajr.git
 
-# if you are deploying to https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:suria-raul/raulsuriajr.git master:master
+cd ../dist
+
+cp * ../submodule/raulsuriajr -r
+
+cd ../submodule/raulsuriajr/assets
+
+mv index-*.css index.css
+
+mv index-*.js index.js
+
+mv profile-*.jpg profile.jpg
 
 cd -
+
+cd ../
+
+git restore --staged .gitmodules
+
+rm .gitmodules
+
+git restore --staged submodule
+
+echo "Build done!"
+
+echo "Point index.html in submodule/raulsuriajr/index.html to the right resource (css,js,jpg)."
+
+echo "Check the files and push it manually."
