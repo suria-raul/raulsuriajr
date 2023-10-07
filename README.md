@@ -1,5 +1,6 @@
 #### Deployment  
-To deploy run `./deploy.sh` (make sure it is executable)  
+To deploy run `./deploy.sh` (make sure it is executable).  
+Make sure you are using the latest version of node when you run the deploy command.  
 
 #### The `submodule` folder
 Do not delete the `submodule` folder!
