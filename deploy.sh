@@ -42,6 +42,9 @@ mv profile-*.jpg profile.jpg
 echo "Going back to the root directory"
 cd - && cd ../ && pwd
 
+echo "Copying all images to submodule"
+cp -r images/ submodule/raulsuriajr/
+
 echo "Removing changes to .gitmodules file"
 git restore --staged .gitmodules
 
