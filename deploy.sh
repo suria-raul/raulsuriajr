@@ -11,8 +11,10 @@ npm install
 echo "Building..."
 npm run build
 
+if ! [ -f /path/to/file ]
 echo "Creating submodule folder..."
 mkdir submodule
+fi
 
 echo "Entering submodule folder"
 cd submodule
