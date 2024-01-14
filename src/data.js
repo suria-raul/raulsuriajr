@@ -9,6 +9,19 @@ const data = {
     workExperience: {
         title: 'Work Experience',
         experiences: {
+            vavasoftwarecorp: {
+                name: 'Vavasoftware Corp.',
+                position: 'Backend Developer - PHP',
+                duration: 'August 2023 - January 2024',
+                responsibilities: [
+                    'Maintaining and Improving Legacy Systems',
+                    'Applying Bug fixes',
+                    'Applying new features',
+                    'CMS Administration',
+                    'Linux scripting',
+                    'Third party API Integrations',
+                ]
+            },
             yondu: {
                 name: 'Yondu',
                 position: 'Software Engineer - Drupal',
@@ -88,6 +101,12 @@ const data = {
     projects: {
         title: 'Projects',
         projects: {
+            g2g: {
+                name: 'G2G',
+                technology: 'Laravel, VueJs',
+                image: 'images/g2g.png',
+                link: 'https://g2g01.com/'
+            },
             charlton_media: {
                 name: 'Charlton Media',
                 technology: 'Drupal 9',
@@ -160,7 +179,7 @@ const data = {
                 icon: 'images/icons/javaScript.png',
             },
             vue: {
-                name: 'Vue',
+                name: 'VueJs',
                 icon: 'images/icons/vue.png',
             },
             jquery: {
