@@ -44,7 +44,4 @@ export default {
   margin-right: -40px;
 }
 
-#introduction .item-container .resume {
-  border-bottom: 1px solid black;
-}
 </style>

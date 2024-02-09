@@ -11,7 +11,7 @@ export default {
     <div class="item-container min-h-screen box-border px-6 mx-auto text-black font-space-mono">
       <h2 class="text-4xl text-center mb-8">{{ projects.title }}</h2>
       <div class="projects-container">
-        <a v-for="project in projects.projects" :href="project.link" target="_blank">
+        <a v-for="(project, key) in projects.projects" :href="project.link" target="_blank" :key="key">
           <div class="image-container mb-3">
             <img :src="project.image"
                  :alt="project.name"
