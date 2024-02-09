@@ -10,30 +10,6 @@
     @apply grid sm:grid-cols-2 sm:gap-3 md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-5 xl:grid-cols-5 xl:gap-6 gap-y-20 sm:gap-y-20 md:gap-y-24 lg:gap-y-28 xl:gap-y-32;
 }
 
-.menu-dot {
-    @apply bg-white rounded-full inline-block active:w-9 active:h-9 p-2 box-border w-7 h-7 flex items-center justify-center mx-auto transition-all;
-}
-
-.menu-dot.active {
-    @apply w-9 h-9;
-}
-
-#menu {
-    @apply w-14 h-14 fixed top-5 right-5 flex items-center flex-col bg-black justify-evenly rounded cursor-pointer transition-visibility ease-out duration-1 z-1040;
-}
-
-#menu.active {
-    @apply invisible;
-}
-
-#actual-menu {
-    @apply fixed top-0 -right-80 w-80 h-full bg-transparent-black font-space-mono transition-right duration-3 ease-in z-1060;
-}
-
-#actual-menu.active {
-    @apply right-0;
-}
-
 .item-container {
     max-width: 1280px;
 }
