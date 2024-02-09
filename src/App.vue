@@ -1,15 +1,15 @@
 <script>
 import data from './data'
-import Profile from "@/components/Profile.vue"
+import MyProfile from "@/components/MyProfile.vue"
 import WorkExperience from "@/components/WorkExperience.vue"
-import Projects from "@/components/Projects.vue"
-import Skills from "@/components/Skills.vue"
+import ProjectsList from "@/components/ProjectsList.vue"
+import SkillsList from "@/components/SkillsList.vue"
 
 export default {
   components: {
-    Skills,
-    Projects,
-    Profile,
+    SkillsList,
+    ProjectsList,
+    MyProfile,
     WorkExperience
   },
   data() {
@@ -21,10 +21,10 @@ export default {
 </script>
 
 <template>
-  <Profile :profile="data.profile" />
+  <MyProfile :profile="data.profile" />
   <WorkExperience :work-experience="data.workExperience"/>
-  <Projects :projects="data.projects" />
-  <Skills :skills="data.skills" />
+  <ProjectsList :projects="data.projects" />
+  <SkillsList :skills="data.skills" />
 </template>
 
 <style scoped>
