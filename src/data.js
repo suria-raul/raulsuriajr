@@ -9,17 +9,26 @@ const data = {
     workExperience: {
         title: 'Work Experience',
         experiences: {
+            primeTechnologySpecialist: {
+                name: 'Prime Technology Specialist',
+                position: 'PHP Programmer',
+                duration: 'January 2024 - current',
+                responsibilities: [
+                   'Wrote server-side and client-side code for Insurance systems using PHP, HTML, CSS and JavaScript.',
+                   'Developed back-end components to connect applications with web services.',
+                   'Built and maintained internal tools to streamline software development process and enhance productivity.',
+                   "Implements API's to different systems for enhancements.",
+                ]
+            },
             vavasoftwarecorp: {
                 name: 'Vavasoftware Corp.',
                 position: 'Backend Developer - PHP',
-                duration: 'August 2023 - January 2024',
+                duration: 'August 2023 - December 2023',
                 responsibilities: [
-                    'Maintaining and Improving Legacy Systems',
-                    'Applying Bug fixes',
-                    'Applying new features',
-                    'CMS Administration',
-                    'Linux scripting',
-                    'Third party API Integrations',
+                    'Spearheaded the development and implementation of multiple hightraffic online gaming platforms, encompassing casino and gambling websites.',
+                    'Oversaw the comprehensive maintenance and optimization of critical systems infrastructure, ensuring high availability, performance, and reliability of online platforms.',
+                    'Integrated diverse third-party APIs to enhance platform functionality and expand service offerings.',
+                    'Optimizing complex database queries to improve application performance and scalability.',
                 ]
             },
             yondu: {
@@ -27,10 +36,10 @@ const data = {
                 position: 'Software Engineer - Drupal',
                 duration: 'September 2022 - June 2023',
                 responsibilities: [
-                    'Bug fixing and Troubleshooting',
-                    'Applying enhancements to an existing application',
-                    'Following best practice and standards',
-                    'Code implementation enhancements',
+                    'Played a key role in maintaining the integrity and reliability of Drupal applications by efficiently identifying, diagnosing, and resolving software defects and technical issues.',
+                    'Contributed to the evolution of Drupal applications by implementing enhancements to existing features and functionalities.',
+                    'Consistently adhered to Drupal coding standards, security guidelines and development best practices throughout the development lifecycle.',
+                    'Writing clean, well-documented, and optimized code, and included tasks such as optimizing database queries, implementing caching strategies, and refactoring existing code to improve maintainability.',
                     'Git and Composer',
                 ]
             },
@@ -39,13 +48,11 @@ const data = {
                 position: 'Drupal Developer',
                 duration: 'March 2021 - September 2022',
                 responsibilities: [
-                    'Creating Drupal application from scratch',
-                    'Mobile responsive',
-                    'Custom modules, theming and Drupal MVC',
-                    'Deploying applications in cpanel',
-                    'Linux Shell Scripting',
-                    'Git, Drush and Composer',
-                    'DDEV for local development',
+                    'Develops Drupal applications from the ground up, encompassing all aspects of site architecture, module selection, and custom module development.',
+                    'Ensured optimal user experiences across all devices by implementing mobile-responsive designs and front-end development techniques.',
+                    'Developed custom Drupal modules to extend site functionality beyond core features, created and customized Drupal themes to achieve unique visual designs, and implemented the Drupal MVC (Model-ViewController) architecture to organize code and promote maintainability.',
+                    'Utilized Linux shell scripting to automate routine tasks, streamline development workflows, and improve server administration efficiency.',
+                    'Leveraged Git for version control to manage code changes collaboratively, Drush for Drupal site management to automate common administrative tasks, and Composer for dependency management to efficiently manage project dependencies.',
                 ]
             },
             coreproc: {
@@ -53,14 +60,13 @@ const data = {
                 position: 'PHP Developer',
                 duration: 'September 2019 - March 2021',
                 responsibilities: [
-                    'Creating Drupal or Laravel applications from start to finish',
-                    'Drupal and laravel web applications maintenance',
-                    'Troubleshooting, Bug fixing and enhancements to drupal application',
-                    'Integrating new technologies suggested by marketing',
-                    'Linux Shell Scripting',
-                    'Mobile responsive',
-                    'Unit testing for API\'s created using laravel',
-                    'MVC for both drupal and laravel',
+                    'Develops web applications from inception to completion using both Drupal and Laravel frameworks.',
+                    'Managed the ongoing maintenance of existing Drupal and Laravel web applications, ensuring their stability, security, and optimal performance.',
+                    'Maintaining and improving Drupal applications by efficiently troubleshooting and resolving software defects, implementing bug fixes, and developing enhancements to existing functionality.',
+                    'Collaborated with marketing teams to integrate new and emerging technologies into web applications to enhance user engagement and achieve business objectives.',
+                    'Utilized Linux shell scripting to automate routine tasks, streamline development workflows, and optimize server administration.',
+                    'Ensured that all developed web applications provided a seamless and engaging user experience across various devices by implementing mobile-responsive designs.',
+                    'Designed and developed web applications using the Model-ViewController (MVC) architectural pattern in both Drupal and Laravel frameworks.',
                 ]
             },
             purplebug: {
@@ -68,12 +74,12 @@ const data = {
                 position: 'Junior Web Developer',
                 duration: 'August 2018 - February 2019',
                 responsibilities: [
-                    'Bug fixing and Troubleshooting',
-                    'Laravel and wordpress application maintenance',
-                    'Applying enchancements to an existing application',
-                    'Creating Mobile Responsive Applications',
-                    'Providing Web support',
-                    'Analyzing and reviewing design specifications',
+                    'Ensuring the stability and functionality of applications by efficiently identifying, diagnosing, and resolving software defects.',
+                    'Participated in the ongoing maintenance of Laravel and WordPress applications, ensuring their smooth operation and addressing any issues that arose.',
+                    'Contributed to the improvement of existing applications by implementing enhancements to features and functionalities.',
+                    'Played a role in developing web applications that provided a positive user experience across various devices by contributing to the implementation of mobile-responsive designs.',
+                    'Provided technical support to users, addressing their inquiries and resolving technical issues related to web applications.',
+                    'Collaborated with designers and senior developers to analyze and review design specifications for new and existing applications.',
                 ]
             },
             wns_wfm: {
