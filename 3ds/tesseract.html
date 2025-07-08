@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4D Tesseract Simulation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            /* Subtle space background for ambiance */
+            background: radial-gradient(circle at center,
+                        #050515 0%, /* Dark navy/purple center */
+                        #000000 70% /* Black outer */
+                      );
+            background-size: 100% 100%; /* No animation needed, static background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            font-family: Arial, sans-serif;
+            color: #fff;
+            flex-direction: column;
+        }
+
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #info {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9em;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 10;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            #info {
+                font-size: 0.75em;
+                padding: 5px 10px;
+                bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="threeCanvas"></canvas>
+    <div id="info">Use mouse (drag/scroll) or touch (drag/pinch) to rotate.</div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- OrbitControls for camera interaction -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        // --- Three.js Global Variables ---
+        let scene, camera, renderer, controls;
+        let outerTesseract, innerTesseract; // The two nested cubes
+        let connectionLines; // Lines connecting the cubes' vertices
+        let innerStone; // The glowing stone inside
+        let stoneLight; // Point light for the stone's glow
+
+        // --- Uniform-like values for animation ---
+        let time = 0.0;
+        const pulseSpeed = 2.0; // How fast the glow pulses
+        const minStoneLightIntensity = 0.5; // Minimum glow intensity for stone light
+        const maxStoneLightIntensity = 1.5; // Maximum glow intensity for stone light
+        //const stoneBaseEmissiveIntensity = 1.0; // Base emissive intensity for stone material (now handled by pulse)
+
+        // UPDATED: Increased Tesseract glow intensity
+        const tesseractMinEmissiveIntensity = 0.2; // Increased minimum glow
+        const tesseractMaxEmissiveIntensity = 0.5; // Increased maximum glow
+
+        const stoneGlowColor = new THREE.Color(0xFF00FF); // Vibrant magenta/purple for the stone light
+
+        // --- Inner Stone Shader Uniforms ---
+        let stoneUniforms = {
+            time: { value: 0.0 },
+            color1: { value: new THREE.Color(0xFF0000) }, // Red
+            color2: { value: new THREE.Color(0xFFA500) }, // Orange
+            color3: { value: new THREE.Color(0xFFFF00) }, // Yellow
+            pulseIntensity: { value: 1.0 }, // Controlled by main animate loop
+            scale: { value: 1.0 } // Used to adjust size if needed
+        };
+
+        // --- Inner Stone Vertex Shader (for turbulence) ---
+        const stoneVertexShader = `
+            uniform float time;
+            uniform float scale;
+            varying vec3 vPosition;
+
+            void main() {
+                vPosition = position;
+
+                // Simple sine-wave based displacement for turbulent look
+                float displacement = sin(position.x * 2.0 + time * 5.0) * 0.2;
+                displacement += cos(position.y * 3.0 + time * 4.0) * 0.2;
+                displacement += sin(position.z * 4.0 + time * 3.0) * 0.2;
+                displacement = clamp(displacement, -0.5, 0.5); // Limit displacement
+
+                vec3 newPosition = position + normalize(position) * displacement * scale * 0.5;
+
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
+            }
+        `;
+
+        // --- Inner Stone Fragment Shader (for fiery gradient glow) ---
+        const stoneFragmentShader = `
+            uniform float time;
+            uniform vec3 color1; // Red
+            uniform vec3 color2; // Orange
+            uniform vec3 color3; // Yellow
+            uniform float pulseIntensity; // From JS, 0 to 1
+
+            varying vec3 vPosition; // Position in object space
+
+            void main() {
+                // Calculate distance from center (approx)
+                float dist = length(vPosition);
+
+                // Create a gradient based on distance
+                vec3 finalColor;
+                if (dist < 0.5) { // Inner core
+                    finalColor = mix(color3, color2, dist / 0.5); // Yellow to Orange
+                } else { // Outer part
+                    finalColor = mix(color2, color1, (dist - 0.5) / 0.5); // Orange to Red
+                }
+
+                // Add a bright, pulsing white core
+                float coreBrightness = 1.0 - smoothstep(0.0, 0.7, dist); // Brighter towards center
+                finalColor = mix(finalColor, vec3(1.0, 1.0, 1.0), coreBrightness * pulseIntensity * 0.5);
+
+                // Modulate final color with overall pulse intensity
+                gl_FragColor = vec4(finalColor * pulseIntensity, 1.0); // Full opacity for the stone itself
+            }
+        `;
+
+
+        // --- Initialization Function ---
+        function init() {
+            // 1. Scene: Container for all objects, lights, and cameras
+            scene = new THREE.Scene();
+
+            // 2. Camera: Defines the viewing frustum
+            // PerspectiveCamera(fov, aspect, near, far)
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 0, 20); // Position camera to see the Tesseract
+
+            // 3. Renderer: Renders the scene to the canvas
+            renderer = new THREE.WebGLRenderer({ antialias: true, canvas: document.getElementById('threeCanvas'), alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight); // Full screen
+            renderer.setPixelRatio(window.devicePixelRatio); // Handle high-DPI displays
+
+            // Set transparent background for CSS body background to show
+            renderer.setClearColor(0x000000, 0);
+
+            // 4. OrbitControls: User interaction for camera movement
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true; // Smooth movement
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false; // Prevent unwanted panning
+            controls.minDistance = 5; // Prevent zooming too close
+            controls.maxDistance = 100; // Limit zooming out
+
+            // 5. Lighting
+            // AmbientLight: Illuminates all objects equally from all directions (subtle)
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+            scene.add(ambientLight);
+
+            // Create a CubeTexture for environment mapping (for reflections/refractions on glass)
+            // Using actual colors for cube faces:
+            // Right, Left, Top, Bottom, Front, Back
+            const envMapUrls = [
+                'https://placehold.co/1x1/87CEEB/87CEEB?text=', // Light Sky Blue
+                'https://placehold.co/1x1/000080/000080?text=', // Navy Blue
+                'https://placehold.co/1x1/FFFFFF/FFFFFF?text=', // White
+                'https://placehold.co/1x1/333333/333333?text=', // Dark Grey
+                'https://placehold.co/1x1/4682B4/4682B4?text=', // Steel Blue
+                'https://placehold.co/1x1/191970/191970?text='  // Midnight Blue
+            ];
+
+            const loader = new THREE.CubeTextureLoader();
+            const cubeTexture = loader.load(envMapUrls);
+            scene.environment = cubeTexture; // Set the environment map for the scene
+
+            // --- Create the Tesseract (Glass Cubes) ---
+            const outerTesseractGeometry = new THREE.BoxGeometry(10, 10, 10);
+            const innerTesseractGeometry = new THREE.BoxGeometry(5, 5, 5); // Smaller inner cube
+
+            const tesseractMaterial = new THREE.MeshPhysicalMaterial({
+                color: 0xADD8E6, // Light blue base color for the glass
+                metalness: 0.05,
+                roughness: 0.1,
+                transparent: true,
+                transmission: 0.9, // High transmission for glass-like appearance
+                opacity: 0.8,
+                reflectivity: 0.5,
+                clearcoat: 0.5, // For a clear top coat effect
+                clearcoatRoughness: 0.2,
+                envMap: cubeTexture, // Apply the environment map for reflections
+                envMapIntensity: 1, // How much the env map affects the material
+                emissive: 0x00BFFF, // UPDATED: Light blue emissive color for glow
+                emissiveIntensity: 0.1 // This will be dynamically updated
+            });
+
+            outerTesseract = new THREE.Mesh(outerTesseractGeometry, tesseractMaterial);
+            innerTesseract = new THREE.Mesh(innerTesseractGeometry, tesseractMaterial.clone()); // Clone material for potential independent properties later
+            innerTesseract.position.set(0,0,0); // Ensure inner cube starts at origin of outer cube
+
+            scene.add(outerTesseract);
+            scene.add(innerTesseract);
+
+            // --- Create connection lines ---
+            const lineGeometry = new THREE.BufferGeometry();
+            const positions = new Float32Array(8 * 2 * 3); // 8 vertices * 2 points per line * 3 components (x,y,z)
+            lineGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const lineMaterial = new THREE.LineBasicMaterial({
+                color: 0x87CEEB, // UPDATED: Light Sky Blue for the lines to match glow
+                transparent: true,
+                opacity: 0.7,
+                blending: THREE.AdditiveBlending
+            });
+            connectionLines = new THREE.LineSegments(lineGeometry, lineMaterial);
+            scene.add(connectionLines);
+
+
+            // --- Create the Glowing Stone Inside (using ShaderMaterial) ---
+            const stoneGeometry = new THREE.SphereGeometry(2.0, 64, 64); // Slightly larger sphere for more detail
+            const stoneMaterial = new THREE.ShaderMaterial({
+                uniforms: stoneUniforms,
+                vertexShader: stoneVertexShader,
+                fragmentShader: stoneFragmentShader,
+                transparent: true,
+                blending: THREE.AdditiveBlending, // Makes it look like it's emitting light
+                depthWrite: false, // Important for additive blending
+                side: THREE.FrontSide // Render front side only
+            });
+            innerStone = new THREE.Mesh(stoneGeometry, stoneMaterial);
+            scene.add(innerStone);
+
+            // --- Create a PointLight for the stone's glow effect ---
+            stoneLight = new THREE.PointLight(stoneGlowColor, 1.0, 50); // Color, Intensity, Distance
+            stoneLight.position.set(0, 0, 0); // Position at the center, same as the stone
+            scene.add(stoneLight);
+
+            // Handle window resizing
+            window.addEventListener('resize', onWindowResize, false);
+
+            // Start the animation loop
+            animate();
+        }
+
+        // Helper function to get cube vertices
+        function getCubeVertices(geometry) {
+            const vertices = [];
+            const positionAttribute = geometry.attributes.position;
+            for (let i = 0; i < positionAttribute.count; i++) {
+                vertices.push(new THREE.Vector3().fromBufferAttribute(positionAttribute, i));
+            }
+            return vertices;
+        }
+
+        // --- Animation Loop ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Update global time
+            time += 0.01;
+            stoneUniforms.time.value = time; // Pass time to stone shader
+
+            // --- Tesseract Animation ---
+            // Overall rotation of the entire Tesseract assembly
+            outerTesseract.rotation.x += 0.003;
+            outerTesseract.rotation.y += 0.005;
+
+            // Simulate 4D rotation by oscillating inner cube's rotation and scale
+            // The inner cube's rotation and scale will be relative to the outer cube.
+            // A simple sine wave can simulate the "folding" effect
+            const innerRotationSpeed = Math.sin(time * 0.7) * 0.01 + 0.005; // Oscillating speed
+            const innerScaleFactor = Math.sin(time * 0.5) * 0.15 + 0.6; // Oscillating scale
+            innerTesseract.rotation.x += innerRotationSpeed;
+            innerTesseract.rotation.y += innerRotationSpeed * 1.5;
+            innerTesseract.rotation.z += innerRotationSpeed * 0.8;
+            innerTesseract.scale.setScalar(innerScaleFactor);
+
+            // --- Update Connection Lines ---
+            const outerVertices = getCubeVertices(outerTesseract.geometry);
+            const innerVertices = getCubeVertices(innerTesseract.geometry);
+            const positions = connectionLines.geometry.attributes.position.array;
+
+            // Transform inner cube vertices to world space if they were added to a group.
+            // Since they are added directly to the scene, they are already in world space relative to their own object's transform.
+            // We need to apply the innerTesseract's current world matrix to its local vertices.
+
+            // Ensure world matrices are updated before querying them
+            outerTesseract.updateMatrixWorld(true);
+            innerTesseract.updateMatrixWorld(true);
+
+            const outerWorldMatrix = outerTesseract.matrixWorld;
+            const innerWorldMatrix = innerTesseract.matrixWorld;
+
+            for (let i = 0; i < 8; i++) {
+                // Get the local vertex positions and transform them to world space
+                const outerVertex = outerVertices[i].clone().applyMatrix4(outerWorldMatrix);
+                const innerVertex = innerVertices[i].clone().applyMatrix4(innerWorldMatrix);
+
+                // Set position for the line segment (outer vertex to inner vertex)
+                positions[i * 6 + 0] = outerVertex.x;
+                positions[i * 6 + 1] = outerVertex.y;
+                positions[i * 6 + 2] = outerVertex.z;
+                positions[i * 6 + 3] = innerVertex.x;
+                positions[i * 6 + 4] = innerVertex.y;
+                positions[i * 6 + 5] = innerVertex.z;
+            }
+            connectionLines.geometry.attributes.position.needsUpdate = true;
+
+
+            // --- Pulsating Glow for Inner Stone and Tesseract ---
+            const pulse = Math.sin(time * pulseSpeed) * 0.5 + 0.5; // 0 to 1 (smooth pulse)
+
+            const currentStoneLightIntensity = minStoneLightIntensity + pulse * (maxStoneLightIntensity - minStoneLightIntensity);
+            stoneLight.intensity = currentStoneLightIntensity; // Update light intensity
+            stoneUniforms.pulseIntensity.value = currentStoneLightIntensity; // Pass to stone shader
+
+            // Pulsating glow for the Tesseract itself (both cubes share this material)
+            const currentTesseractEmissiveIntensity = tesseractMinEmissiveIntensity + pulse * (tesseractMaxEmissiveIntensity - tesseractMinEmissiveIntensity);
+            outerTesseract.material.emissiveIntensity = currentTesseractEmissiveIntensity;
+            innerTesseract.material.emissiveIntensity = currentTesseractEmissiveIntensity;
+
+
+            controls.update(); // Update OrbitControls for smooth camera movement
+            renderer.render(scene, camera); // Render the scene
+        }
+
+        // --- Handle Window Resizing ---
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Initialize the scene when the window loads
+        window.onload = init;
+    </script>
+</body>
+</html>

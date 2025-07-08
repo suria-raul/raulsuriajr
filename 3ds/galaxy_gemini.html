@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Milky Way Galaxy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Apply Inter font and basic body styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden; /* Hide scrollbars */
+            background-color: #000000; /* Black background for space */
+            color: #ffffff; /* White text */
+        }
+
+        /* Canvas will fill the entire screen */
+        #galaxy-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000; /* Ensure black background */
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Styling for the info box */
+        #info-box {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="galaxy-container">
+        <!-- The Three.js canvas will be appended here by JavaScript -->
+    </div>
+    <div id="info-box" class="rounded-lg">
+        Drag your mouse to orbit the galaxy. Scroll to zoom.
+    </div>
+
+    <!-- Three.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- OrbitControls for camera interaction -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        // Global variables for Three.js components
+        let scene, camera, renderer, controls;
+        let galaxy; // The main galaxy object
+
+        // Constants for galaxy generation
+        const NUM_STARS_CORE = 50000; // Number of stars in the core
+        const NUM_STARS_ARM = 150000; // Number of stars per spiral arm
+        const NUM_ARMS = 4;           // Number of spiral arms
+        const GALAXY_RADIUS = 500;    // Overall radius of the galaxy
+        const CORE_RADIUS = GALAXY_RADIUS * 0.1; // Radius of the central core
+        const ARM_THICKNESS = GALAXY_RADIUS * 0.05; // Vertical thickness of the arms
+        const ARM_DENSITY_FALLOFF = 0.8; // How quickly density falls off from center of arm
+        const ARM_TWIST = 2;          // How many twists per arm
+        const STAR_SIZE = 1.5;        // Base size of individual stars
+
+        // Function to create a circular texture for particles (stars)
+        function createStarTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 64;
+            canvas.height = 64;
+            const context = canvas.getContext('2d');
+            const gradient = context.createRadialGradient(
+                canvas.width / 2,
+                canvas.height / 2,
+                0,
+                canvas.width / 2,
+                canvas.height / 2,
+                canvas.width / 2
+            );
+            gradient.addColorStop(0, 'rgba(255,255,255,1)');
+            gradient.addColorStop(0.2, 'rgba(255,255,255,0.8)');
+            gradient.addColorStop(0.4, 'rgba(200,200,255,0.6)');
+            gradient.addColorStop(1, 'rgba(0,0,0,0)');
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            return new THREE.CanvasTexture(canvas);
+        }
+
+        // Function to initialize the Three.js scene
+        function init() {
+            // Scene
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x000000); // Ensure black background
+
+            // Camera
+            camera = new THREE.PerspectiveCamera(
+                75,
+                window.innerWidth / window.innerHeight,
+                0.1,
+                2000
+            );
+            camera.position.set(0, 300, 700); // Position camera to view the galaxy
+
+            // Renderer
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.getElementById('galaxy-container').appendChild(renderer.domElement);
+
+            // Controls
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true; // Smooth camera movement
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false;
+            controls.minDistance = 100;
+            controls.maxDistance = 1000;
+
+            // Create the galaxy
+            createGalaxy();
+
+            // Handle window resizing
+            window.addEventListener('resize', onWindowResize, false);
+
+            // Start the animation loop
+            animate();
+        }
+
+        // Function to create the galaxy model
+        function createGalaxy() {
+            galaxy = new THREE.Group(); // Use a group to hold all galaxy components
+
+            // Star texture for particles
+            const starTexture = createStarTexture();
+
+            // Material for stars
+            const starMaterial = new THREE.PointsMaterial({
+                size: STAR_SIZE,
+                map: starTexture,
+                blending: THREE.AdditiveBlending, // For bright, glowing stars
+                transparent: true,
+                depthWrite: false, // Important for blending
+                vertexColors: true // Enable per-vertex colors
+            });
+
+            // 1. Create the Galaxy Core (dense sphere of stars)
+            const coreGeometry = new THREE.BufferGeometry();
+            const corePositions = [];
+            const coreColors = [];
+            const coreColor = new THREE.Color();
+
+            for (let i = 0; i < NUM_STARS_CORE; i++) {
+                // Random position within a sphere
+                const radius = Math.random() * CORE_RADIUS;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(Math.random() * 2 - 1); // Distribute points evenly on sphere
+
+                const x = radius * Math.sin(phi) * Math.cos(theta);
+                const y = radius * Math.sin(phi) * Math.sin(theta);
+                const z = radius * Math.cos(phi);
+
+                corePositions.push(x, y, z);
+
+                // Core stars are generally yellowish/orange
+                coreColor.setHSL(0.1 + Math.random() * 0.1, 0.8, 0.7 + Math.random() * 0.2);
+                coreColors.push(coreColor.r, coreColor.g, coreColor.b);
+            }
+
+            coreGeometry.setAttribute('position', new THREE.Float32BufferAttribute(corePositions, 3));
+            coreGeometry.setAttribute('color', new THREE.Float32BufferAttribute(coreColors, 3));
+            const coreStars = new THREE.Points(coreGeometry, starMaterial);
+            galaxy.add(coreStars);
+
+            // 2. Create the Spiral Arms
+            for (let i = 0; i < NUM_ARMS; i++) {
+                const armGeometry = new THREE.BufferGeometry();
+                const armPositions = [];
+                const armColors = [];
+                const armColor = new THREE.Color();
+
+                // Each arm starts at a different angle
+                const armOffsetAngle = (Math.PI * 2 / NUM_ARMS) * i;
+
+                for (let j = 0; j < NUM_STARS_ARM; j++) {
+                    // Logarithmic spiral for arm shape
+                    const distance = Math.random() * (GALAXY_RADIUS - CORE_RADIUS) + CORE_RADIUS;
+                    const angle = distance / GALAXY_RADIUS * ARM_TWIST * Math.PI * 2 + armOffsetAngle;
+
+                    // Add randomness for arm width and density
+                    const armWidth = Math.pow(Math.random(), 2) * GALAXY_RADIUS * 0.1; // Wider closer to core
+                    const randomX = (Math.random() * 2 - 1) * armWidth;
+                    const randomY = (Math.random() * 2 - 1) * ARM_THICKNESS;
+                    const randomZ = (Math.random() * 2 - 1) * armWidth;
+
+                    // Apply rotation for the spiral shape
+                    const x = distance * Math.cos(angle) + randomX;
+                    const z = distance * Math.sin(angle) + randomZ;
+                    const y = randomY; // Y is the vertical axis for thickness
+
+                    armPositions.push(x, y, z);
+
+                    // Color based on position/randomness (e.g., bluer for outer, yellower for inner)
+                    // Or just random colors for variety
+                    const hue = (distance / GALAXY_RADIUS) * 0.3 + Math.random() * 0.1 + 0.6; // Blueish to greenish for arms
+                    armColor.setHSL(hue, 0.8, 0.7 + Math.random() * 0.2);
+                    armColors.push(armColor.r, armColor.g, armColor.b);
+                }
+
+                armGeometry.setAttribute('position', new THREE.Float32BufferAttribute(armPositions, 3));
+                armGeometry.setAttribute('color', new THREE.Float32BufferAttribute(armColors, 3));
+                const armStars = new THREE.Points(armGeometry, starMaterial);
+                galaxy.add(armStars);
+            }
+
+            scene.add(galaxy);
+        }
+
+        // Handle window resizing
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate the galaxy slowly
+            if (galaxy) {
+                galaxy.rotation.y += 0.0005; // Slow rotation around Y-axis
+            }
+
+            controls.update(); // Update OrbitControls
+            renderer.render(scene, camera); // Render the scene
+        }
+
+        // Initialize Three.js when the window loads
+        window.onload = function () {
+            init();
+        };
+    </script>
+</body>
+</html>

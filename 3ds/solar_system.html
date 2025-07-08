@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Solar System</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #050510; /* Very dark blue for space */
+            font-family: Arial, sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Ensure full viewport height */
+            flex-direction: column;
+        }
+
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #info {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9em;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 10;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            #info {
+                font-size: 0.75em;
+                padding: 5px 10px;
+                bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="threeCanvas"></canvas>
+    <div id="info">Use mouse (drag/scroll) or touch (drag/pinch) to navigate.</div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- OrbitControls for camera interaction -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        // --- Three.js Global Variables ---
+        let scene, camera, renderer, controls;
+        const planets = []; // Array to store planet objects (mesh and orbit pivot)
+        let sun;
+
+        // --- Planet Data (Simplified for visual representation) ---
+        // Radii and distances are scaled for aesthetic visualization, not scientific accuracy
+        // Orbital periods and rotation speeds are exaggerated for animation
+        const planetData = [
+            { name: "Mercury", radius: 0.5, color: 0x9c988e, distance: 10, orbitalSpeed: 0.04, axialSpeed: 0.01 },
+            { name: "Venus", radius: 0.8, color: 0xe6b07e, distance: 15, orbitalSpeed: 0.015, axialSpeed: 0.005 },
+            { name: "Earth", radius: 0.9, color: 0x0077ff, distance: 20, orbitalSpeed: 0.01, axialSpeed: 0.015 },
+            { name: "Mars", radius: 0.6, color: 0xcc5500, distance: 25, orbitalSpeed: 0.008, axialSpeed: 0.012 },
+            { name: "Jupiter", radius: 4.0, color: 0xc7a07c, distance: 40, orbitalSpeed: 0.003, axialSpeed: 0.03 },
+            { name: "Saturn", radius: 3.5, color: 0xd7b98e, distance: 55, orbitalSpeed: 0.002, axialSpeed: 0.025, hasRing: true },
+            { name: "Uranus", radius: 2.0, color: 0xaaffff, distance: 70, orbitalSpeed: 0.0015, axialSpeed: 0.01 },
+            { name: "Neptune", radius: 1.9, color: 0x4169e1, distance: 85, orbitalSpeed: 0.001, axialSpeed: 0.01 }
+        ];
+
+        // --- Initialization Function ---
+        function init() {
+            // 1. Scene: Where all objects, cameras, and lights live
+            scene = new THREE.Scene();
+            // Scene background is handled by CSS body background for subtle gradient
+
+            // 2. Camera: Defines what part of the scene is visible
+            // PerspectiveCamera(fov, aspect, near, far)
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 50, 100); // Start camera further out and slightly above
+
+            // 3. Renderer: Renders the scene onto the canvas
+            renderer = new THREE.WebGLRenderer({ antialias: true, canvas: document.getElementById('threeCanvas') });
+            renderer.setSize(window.innerWidth, window.innerHeight); // Make it full screen
+            renderer.setPixelRatio(window.devicePixelRatio); // Handle high-DPI displays
+
+            // 4. OrbitControls: Allows camera movement via mouse/touch
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true; // For smoother camera movement
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false; // Prevent panning
+            controls.minDistance = 5; // Prevent zooming too close to the sun
+            controls.maxDistance = 200; // Limit zooming out
+
+            // 5. Lighting
+            // AmbientLight: Illuminates all objects equally from all directions
+            const ambientLight = new THREE.AmbientLight(0x333333); // Soft ambient light
+            scene.add(ambientLight);
+
+            // PointLight (Simulating the Sun's light)
+            // The sun mesh itself will have an emissive material to appear bright
+            const sunLight = new THREE.PointLight(0xffffff, 2, 500); // White light, intensity 2, range 500
+            sunLight.position.set(0, 0, 0); // Position at the center
+            scene.add(sunLight);
+
+            // --- Create Sun ---
+            const sunGeometry = new THREE.SphereGeometry(7, 64, 64); // Sun is larger
+            // Use MeshBasicMaterial with emissive property to make it glow
+            const sunMaterial = new THREE.MeshBasicMaterial({ color: 0xFDB813, emissive: 0xFDB813 }); // Yellow/Orange
+            sun = new THREE.Mesh(sunGeometry, sunMaterial);
+            scene.add(sun);
+
+            // --- Create Planets ---
+            planetData.forEach(data => {
+                // Create a pivot group for the planet's orbit around the sun
+                const orbitPivot = new THREE.Group();
+                scene.add(orbitPivot);
+
+                // Create the planet mesh
+                const planetGeometry = new THREE.SphereGeometry(data.radius, 32, 32);
+                const planetMaterial = new THREE.MeshStandardMaterial({ color: data.color }); // Standard material for realistic lighting
+                const planetMesh = new THREE.Mesh(planetGeometry, planetMaterial);
+
+                planetMesh.position.x = data.distance; // Position planet away from the sun's center
+                orbitPivot.add(planetMesh); // Add planet to its orbital pivot
+
+                // Add Saturn's ring
+                if (data.hasRing) {
+                    const ringGeometry = new THREE.RingGeometry(data.radius * 1.2, data.radius * 2.0, 32);
+                    const ringMaterial = new THREE.MeshBasicMaterial({ color: 0x888888, side: THREE.DoubleSide, transparent: true, opacity: 0.6 });
+                    const ringMesh = new THREE.Mesh(ringGeometry, ringMaterial);
+                    ringMesh.rotation.x = Math.PI / 2; // Orient the ring flat
+                    planetMesh.add(ringMesh); // Add ring to the planet
+                }
+
+                // Create orbit path (optional)
+                const points = [];
+                for (let i = 0; i <= 64; i++) {
+                    const angle = (i / 64) * Math.PI * 2;
+                    points.push(new THREE.Vector3(data.distance * Math.cos(angle), 0, data.distance * Math.sin(angle)));
+                }
+                const orbitGeometry = new THREE.BufferGeometry().setFromPoints(points);
+                const orbitMaterial = new THREE.LineBasicMaterial({ color: 0x333333 }); // Subtle grey orbit line
+                const orbitLine = new THREE.Line(orbitGeometry, orbitMaterial);
+                scene.add(orbitLine); // Orbits are independent of planet pivots, directly in the scene
+
+                planets.push({
+                    mesh: planetMesh,
+                    orbitPivot: orbitPivot,
+                    data: data,
+                    orbitLine: orbitLine // Keep reference to orbit line
+                });
+            });
+
+            // Handle window resizing
+            window.addEventListener('resize', onWindowResize, false);
+
+            // Start the animation loop
+            animate();
+        }
+
+        // --- Animation Loop ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Update sun's axial rotation (subtle)
+            sun.rotation.y += 0.0005;
+
+            // Update planets' orbits and axial rotations
+            planets.forEach(p => {
+                p.orbitPivot.rotation.y += p.data.orbitalSpeed; // Orbit around the Sun
+                p.mesh.rotation.y += p.data.axialSpeed; // Axial rotation
+            });
+
+            controls.update(); // Update orbit controls
+            renderer.render(scene, camera); // Render the scene
+        }
+
+        // --- Handle Window Resizing ---
+        function onWindowResize() {
+            // Update camera aspect ratio
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+
+            // Update renderer size
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Initialize the scene when the window loads
+        window.onload = init;
+    </script>
+</body>
+</html>

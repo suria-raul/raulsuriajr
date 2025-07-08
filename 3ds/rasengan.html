@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Rasengan</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000000; /* Dark background to make the glow stand out */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            flex-direction: column;
+        }
+
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #info {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9em;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 10;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            #info {
+                font-size: 0.75em;
+                padding: 5px 10px;
+                bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="threeCanvas"></canvas>
+    <div id="info">Use mouse (drag/scroll) or touch (drag/pinch) to rotate.</div>
+
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- OrbitControls for camera interaction -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script>
+        // --- Three.js Global Variables ---
+        let scene, camera, renderer, controls;
+        let rasenganMesh; // The main Rasengan sphere
+        let rasenganLight; // Point light for the Rasengan's emitted light
+
+        // --- Uniform-like values for animation ---
+        let time = 0.0;
+        const pulseSpeed = 2.5; // How fast the glow pulses
+        const swirlSpeed = 1.0; // How fast the internal swirl moves
+        const minLightIntensity = 1.0; // Minimum glow intensity for the light
+        const maxLightIntensity = 3.0; // Maximum glow intensity for the light
+
+        // --- Rasengan Shader Uniforms ---
+        let rasenganUniforms = {
+            time: { value: 0.0 },
+            baseColor: { value: new THREE.Color(0x00BFFF) }, // Deep Sky Blue (main color)
+            glowColor: { value: new THREE.Color(0xADD8E6) }, // Light Blue (for highlights/glow)
+            intensity: { value: 1.0 }, // Overall intensity, driven by JS pulse
+            noiseScale: { value: 5.0 }, // How detailed the noise/swirl is
+            swirlSpeed: { value: 1.0 } // How fast the swirl moves (passed from JS)
+        };
+
+        // --- Rasengan Vertex Shader ---
+        // Adds subtle displacement for a turbulent, energetic surface
+        const rasenganVertexShader = `
+            uniform float time;
+            uniform float noiseScale;
+            uniform float swirlSpeed;
+            varying vec3 vNormal;
+            varying vec3 vPosition;
+
+            // Simple noise function (could be more complex, but this works)
+            float rand(vec2 co){
+                return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+            }
+
+            float noise(vec3 p) {
+                // A very simple procedural noise based on position and time
+                float n = rand(p.xy + time * swirlSpeed) * rand(p.yz + time * swirlSpeed) * rand(p.zx + time * swirlSpeed);
+                return n * 2.0 - 1.0; // Map to -1 to 1
+            }
+
+            void main() {
+                vNormal = normal; // Pass original normal
+                vPosition = position; // Pass original position
+
+                // Displace vertices along their normals based on noise and time
+                // This creates the "churning" or "turbulent" effect of the energy
+                vec3 displacedPosition = position + normalize(position) * noise(position * noiseScale + time * swirlSpeed) * 0.5;
+
+                gl_Position = projectionMatrix * modelViewMatrix * vec4(displacedPosition, 1.0);
+            }
+        `;
+
+        // --- Rasengan Fragment Shader ---
+        // Colors the sphere with a glowing, swirling blue-white energy
+        const rasenganFragmentShader = `
+            uniform float time;
+            uniform vec3 baseColor;
+            uniform vec3 glowColor;
+            uniform float intensity; // Overall brightness from JS pulse
+            uniform float noiseScale;
+            uniform float swirlSpeed;
+            varying vec3 vNormal;
+            varying vec3 vPosition;
+
+            // Simple noise function (same as in vertex shader for consistency)
+            float rand(vec2 co){
+                return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+            }
+
+            float noise(vec3 p) {
+                float n = rand(p.xy + time * swirlSpeed) * rand(p.yz + time * swirlSpeed) * rand(p.zx + time * swirlSpeed);
+                return n * 2.0 - 1.0;
+            }
+
+            void main() {
+                // Normalize position to get a consistent radial gradient
+                vec3 normalizedPos = normalize(vPosition);
+
+                // Create a radial falloff for the glow
+                // Makes the center brighter and fades outwards
+                float radialGlow = 1.0 - length(vPosition) / 5.0; // Sphere radius is 5
+                radialGlow = pow(radialGlow, 2.0); // Sharpen the glow
+
+                // Add a swirling noise pattern
+                float swirlNoise = noise(normalizedPos * noiseScale + time * swirlSpeed);
+                swirlNoise = abs(swirlNoise); // Make it positive, for bright streaks
+                swirlNoise = pow(swirlNoise, 3.0); // Sharpen streaks
+
+                // Mix colors: base color + glow color based on noise and radial glow
+                vec3 finalColor = mix(baseColor, glowColor, swirlNoise * radialGlow * 2.0);
+
+                // Apply overall intensity from JS
+                gl_FragColor = vec4(finalColor * intensity, 0.7); // 0.7 for translucency
+            }
+        `;
+
+        // --- Initialization Function ---
+        function init() {
+            // 1. Scene: Container for all objects, lights, and cameras
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x000000); // Ensures a pure black background behind the transparent canvas.
+
+            // 2. Camera: Defines the viewing frustum
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 0, 10); // Position camera to see the Rasengan
+
+            // 3. Renderer: Renders the scene to the canvas
+            renderer = new THREE.WebGLRenderer({ antialias: true, canvas: document.getElementById('threeCanvas'), alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight); // Full screen
+            renderer.setPixelRatio(window.devicePixelRatio); // Handle high-DPI displays
+
+            // Set clear color to transparent to allow CSS body background to show if present.
+            // For a pure black background, setting it here explicitly helps.
+            renderer.setClearColor(0x000000, 0);
+
+            // 4. OrbitControls: User interaction for camera movement
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true; // Smooth movement
+            controls.dampingFactor = 0.05;
+            controls.screenSpacePanning = false; // Prevent unwanted panning
+            controls.minDistance = 2; // Prevent zooming too close
+            controls.maxDistance = 50; // Limit zooming out
+
+            // 5. Lighting (The Rasengan itself will emit light, this is for subtle ambient scene light)
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.2); // Very dim ambient light
+            scene.add(ambientLight);
+
+            // --- Create the Rasengan Mesh ---
+            const rasenganGeometry = new THREE.SphereGeometry(5, 64, 64); // Larger sphere for more detail
+            const rasenganMaterial = new THREE.ShaderMaterial({
+                uniforms: rasenganUniforms,
+                vertexShader: rasenganVertexShader,
+                fragmentShader: rasenganFragmentShader,
+                transparent: true,
+                blending: THREE.AdditiveBlending, // Makes it look like it's emitting light
+                depthWrite: false, // Important for additive blending issues
+                side: THREE.DoubleSide // Render both sides of faces
+            });
+            rasenganMesh = new THREE.Mesh(rasenganGeometry, rasenganMaterial);
+            scene.add(rasenganMesh);
+
+            // --- Create a PointLight that emits from the center of the Rasengan ---
+            // This light will illuminate other objects in the scene and enhance the glow.
+            rasenganLight = new THREE.PointLight(rasenganUniforms.baseColor.value, 1.0, 50, 2); // Color, Intensity, Distance, Decay
+            rasenganLight.position.set(0, 0, 0); // At the center of the sphere
+            scene.add(rasenganLight);
+
+            // Handle window resizing
+            window.addEventListener('resize', onWindowResize, false);
+
+            // Start the animation loop
+            animate();
+        }
+
+        // --- Animation Loop ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Update global time for shaders
+            time += 0.01;
+            rasenganUniforms.time.value = time;
+
+            // Pulsating intensity for the Rasengan's light and shader
+            const pulse = Math.sin(time * pulseSpeed) * 0.5 + 0.5; // 0 to 1
+            const currentLightIntensity = minLightIntensity + pulse * (maxLightIntensity - minLightIntensity);
+            rasenganLight.intensity = currentLightIntensity;
+            rasenganUniforms.intensity.value = currentLightIntensity; // Pass to shader
+
+            // Rotate the Rasengan mesh itself for overall movement
+            rasenganMesh.rotation.y += 0.001; // Made slower
+            rasenganMesh.rotation.x += 0.0005; // Made slower
+
+            controls.update(); // Update OrbitControls for smooth camera movement
+            renderer.render(scene, camera); // Render the scene
+        }
+
+        // --- Handle Window Resizing ---
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        // Initialize the scene when the window loads
+        window.onload = init;
+    </script>
+</body>
+</html>
